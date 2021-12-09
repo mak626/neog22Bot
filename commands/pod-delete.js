@@ -34,24 +34,24 @@ module.exports = {
                     const teamRole = findRoleById(message, role.id);
                     if (!teamRole) return;
                     if (ignoreRoles.find((e) => e.id === teamRole.id)) return;
-                    await teamRole.delete();
+                    teamRole.delete();
                     return true;
                 });
-                await channel.delete();
+                channel.delete();
             });
 
             category.permissionOverwrites.forEach(async (role) => {
                 const categoryRole = findRoleById(message, role.id);
                 if (!categoryRole) return;
                 if (ignoreRoles.find((e) => e.id === categoryRole.id)) return;
-                await categoryRole.delete();
+                categoryRole.delete();
                 return true;
             });
-            await category.delete();
+            category.delete();
         }
 
         const embed = new Discord.MessageEmbed({
-            title: 'Deleted Category Succesfully',
+            title: 'Deleted Pods Succesfully',
             color: COLORS.red,
         });
 

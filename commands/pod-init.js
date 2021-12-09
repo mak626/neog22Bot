@@ -1,5 +1,5 @@
 const Discord = require('discord.js');
-const { PREFIX } = require('../utils/constants');
+const { PREFIX, COLORS } = require('../utils/constants');
 const { findRoleById, sendDissapearingMessage } = require('../utils/functions');
 
 module.exports = {
@@ -160,5 +160,12 @@ module.exports = {
                 });
             }
         }
+
+        const embed = new Discord.MessageEmbed({
+            title: 'Created Pods Succesfully',
+            color: COLORS.green,
+        });
+
+        message.reply(embed);
     },
 };
