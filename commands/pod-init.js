@@ -56,7 +56,7 @@ module.exports = {
                 },
                 {
                     id: maRole.id,
-                    allow: ['VIEW_CHANNEL', 'SEND_MESSAGES', 'CONNECT'],
+                    allow: ['SEND_MESSAGES', 'CONNECT'],
                 },
                 {
                     id: caRole.id,
@@ -95,7 +95,6 @@ module.exports = {
                     },
                     {
                         id: maRole.id,
-                        allow: ['VIEW_CHANNEL'],
                     },
                     {
                         id: caRole.id,
