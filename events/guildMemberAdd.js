@@ -18,6 +18,7 @@ module.exports = {
     async execute(member, client) {
         await updateBanOrKickMember(member, { reason: '' }, { reason: '' }, false);
         const user = await getMember(member);
+        return;
         if (user.verified) {
             try {
                 await member.setNickname(user.name);
