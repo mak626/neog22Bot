@@ -17,7 +17,7 @@ jobs:
                   username: ${{ secrets.USERNAME }}
                   key: ${{ secrets.KEY }}
                   script: |
-                      cd tt-bot/GratitudeBot/
+                      cd neog22Bot
                       git checkout master
                       git pull
                       sudo npm run-script build 
