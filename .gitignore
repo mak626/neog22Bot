@@ -1,0 +1,5 @@
+info.log
+node_modules
+*.env
+image.png
+remaining_mails.py

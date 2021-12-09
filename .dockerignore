@@ -1,0 +1,7 @@
+package-lock.json
+info.log
+node_modules
+*.env
+image.png
+firebase_config.json
+logs/

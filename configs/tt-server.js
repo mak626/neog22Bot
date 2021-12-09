@@ -1,0 +1,17 @@
+module.exports = {
+    name: 'neoG 22',
+    id: '914867137863118919',
+    log_channel_id: '914867138668404767',
+    unverified_role_id: '915631275249926204',
+    pa_role_id: '915602982521950218',
+    ta_role_id: '915603581992853534',
+    ma_role_id: '915603209110839307',
+    ca_role_id: '915603586845659168',
+    member_role_id: '915631152725889055',
+    grattitude_channel_id: '914875152968335381',
+    verification_channel_id: '915608637773332529',
+    welcome_channel_id: '914867137942786104',
+    moderator_channel_id: '914867138668404767',
+    hey_tanay_channel_id: '899719140246429786',
+    hey_neog_channel_id: '899999010104967198',
+};

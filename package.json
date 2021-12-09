@@ -1,0 +1,46 @@
+{
+  "name": "neog22bot",
+  "version": "1.0.0",
+  "description": "Discord Bot for Neog22",
+  "private": true,
+  "main": "app.js",
+  "scripts": {
+    "test": "docker-compose up --build -d bot-dev && npm run-script logs-dev",
+    "stop-test": "docker-compose stop bot-dev",
+    "start": "node app.js",
+    "logs": "docker logs -f prod",
+    "logs-dev": "docker logs -f dev",
+    "deploy": "npm run-script build && npm run-script run && npm run-script logs",
+    "build": "docker-compose up --no-start --build bot-prod",
+    "run": "docker-compose up -d bot-prod",
+    "stop": "docker-compose stop bot-prod",
+    "heroku-build": "docker build --pull --rm -f Dockerfile -t registry.heroku.com/team-tanay-bot/worker:latest .",
+    "heroku-run": "docker run --env-file .env -it --rm --name TT-BOT registry.heroku.com/team-tanay-bot/worker:latest",
+    "heroku-deploy": "heroku container:push worker -a team-tanay-bot && heroku container:release worker -a team-tanay-bot",
+    "heroku-logs": "heroku logs --tail -a team-tanay-bot --source app",
+    "update-command-readme": "node ./utils/update-command-readme.js"
+  },
+  "author": "M Aswin Kishore",
+  "license": "ISC",
+  "dependencies": {
+    "@sendgrid/client": "^7.4.7",
+    "discord.js": "^12.5.3",
+    "dotenv": "^8.2.0",
+    "firebase-admin": "^9.11.1",
+    "googleapis": "^73.0.0",
+    "html-to-image": "^1.8.5",
+    "juice": "^8.0.0",
+    "node-fetch": "^2.6.4",
+    "node-html-to-image": "^3.2.0",
+    "nodemailer": "^6.6.3",
+    "uuid": "^8.3.2"
+  },
+  "devDependencies": {
+    "eslint": "^7.31.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-config-standard": "^16.0.3",
+    "eslint-plugin-import": "^2.23.4",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^5.1.0"
+  }
+}

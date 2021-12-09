@@ -1,0 +1,22 @@
+version: '3.4'
+services:
+    bot-dev:
+        container_name: neog22bot-dev
+        env_file: dev.env
+        image: neog22bot-dev:latest
+        volumes:
+            - ./logs:/app/logs
+        build:
+            context: .
+            dockerfile: Dockerfile
+        command: npm run start
+    bot-prod:
+        container_name: neog22bot-prod
+        env_file: .env
+        image: neog22bot:latest
+        volumes:
+            - ./logs:/app/logs
+        build:
+            context: .
+            dockerfile: Dockerfile
+        command: npm run start
