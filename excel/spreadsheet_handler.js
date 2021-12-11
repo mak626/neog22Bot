@@ -133,6 +133,15 @@ async function updateDatabase(data) {
     await clearAndUpdateSheet('Database!A1:ZA', data);
 }
 
+/**
+ * Checks whether user is a valid neoG participant
+ * @param {string} email
+ */
+async function checkAuth(email) {
+    const participants = (await getSheetValuesByName('Authorized!A2:A')).map((e) => e[0]);
+    return participants.includes(email);
+}
+
 module.exports = {
     addOffenceSheet,
     addWarningSheet,
@@ -140,4 +149,5 @@ module.exports = {
     clearAndUpdateSheet,
     updateDatabase,
     appendToSheet,
+    checkAuth,
 };

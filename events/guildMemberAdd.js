@@ -7,6 +7,7 @@ const { MESSAGES } = require('./messages/onboarding');
 const { sendDissapearingMessage } = require('../utils/functions');
 const { addNewMember, getMember, updateBanOrKickMember } = require('../firebase/firebase_handler');
 const { sendMail } = require('../utils/mailHandler');
+const { checkAuth } = require('../excel/spreadsheet_handler');
 
 module.exports = {
     name: 'guildMemberAdd',
@@ -161,23 +162,24 @@ module.exports = {
 
                 if (!EMAIL_REGEX.test(email)) return sendDissapearingMessage(message, '**Invalid Email Entered!**');
 
-                let embed = new Discord.MessageEmbed()
-                    .setTitle('Unauthorized User')
-                    .setColor(COLORS.red)
-                    .setDescription(
-                        [
-                            'Hi, this is an exclusive server for neoG Camp 2022 students and team.',
-                            'You are not authorised to be a member of this server.',
-                            'If you think we are at mistake and you should be a member, then please take a screenshot and mail to neogcamp@gmail.com the issue.',
-                        ].join('\n')
-                    );
-
-                if (!EMAIL_REGEX.test(email)) return message.channel.send(embed);
+                if (!(await checkAuth(email))) {
+                    const embed = new Discord.MessageEmbed()
+                        .setTitle('⛔ Unauthorized User ⛔')
+                        .setColor(COLORS.red)
+                        .setDescription(
+                            [
+                                'Hi, this is an exclusive server for **neoG Camp 2022 students** and team.',
+                                'You are not authorised to be a member of this server.',
+                                'If you think we are at mistake and you should be a member, then please take a screenshot and mail to _neogcamp@gmail.com_ the issue.',
+                            ].join('\n')
+                        );
+                    return message.channel.send(embed);
+                }
 
                 const verificationCode = uuidv4().replace('-', '').slice(0, 10).toLocaleUpperCase();
                 await addNewMember({ user, email, verificationCode, verifiedEmail: false });
 
-                embed = new Discord.MessageEmbed()
+                let embed = new Discord.MessageEmbed()
                     .setTitle(`Sending verification code to: ${email}`)
                     .setColor(COLORS.yellow)
                     .setDescription('Please wait this might take a few minutes');
@@ -259,7 +261,7 @@ module.exports = {
                     title: 'A new member just arrived!',
                     description: [
                         `Welcome ${user.nickname ? user.nickname : user.displayName} we hope you enjoy your stay here!`,
-                        '\nI am neoG22 Bot, BOT of Team Tanay Community',
+                        '\nI am neoG22 Bot,of neoG Camp 2022',
                     ].join('\n'),
                     thumbnail: { url: user.user.displayAvatarURL() },
                     color: COLORS.cyan,

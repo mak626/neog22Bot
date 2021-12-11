@@ -17,7 +17,6 @@ const QUESTION_TWO = [
     "\nI've changed your name on this server to **@ANSWER_NAME**.",
     `If you'd like to change it back then type: \`${PREFIX}name <NAME>\`, Eg: \`${PREFIX}name Tanay Pratap\``,
     "\n**🔺2. What's your email address?**",
-    "(*You will be automatically signed up for Tanay's newsletter. You can unsubscribe to the newsletter later if you wish to.*)",
 ].join('\n');
 
 const QUESTION_THREE = [
