@@ -2,9 +2,9 @@ const { PREFIX } = require('../../utils/constants');
 
 const WELCOME_MESSAGE = [
     'Hello @USERNAME :wave:',
-    "I'm TT Boss and I'm here to welcome you to the Team Tanay Community on Discord!",
+    "I'm neoG22 Bot and I'm here to welcome you to the Team Tanay Community on Discord!",
     '\nBefore you can join in the fun, I need to ask you a few questions.',
-    'If you have any trouble, please tell us about it: <https://forms.gle/vdzzuAw4eXnKApmy7>',
+    'If you have any trouble, Mail to neogcamp@gmail.com',
     "In less than 5 minutes, you'll have full access to this server.",
     "So, let's get started! :nerd: ",
     "Here's the first question:",
@@ -51,15 +51,13 @@ const QUESTION_FIVE = [
 ].join('\n');
 
 const FINAL = [
-    '**✅ Congratulations you have been verified.',
-    '\n✨Welcome to #teamtanay community.✨**',
-    'Do not wait to start the conversation\n',
-    'Here is a template for your ease.',
-    '```Hi everyone,',
-    'My name is: ',
-    'I am from: ',
-    'I like/love: ```',
-    '\nHead over to https://discord.com/channels/713418735532114034/713451116221825164 and say **hello** to your new coding family.',
+    '**✅ Congrats, your onboarding for neoG Camp 2022 is complete.',
+    '\n✨Welcome to neoG Camp 2022.✨**',
+    'Here is your personal kit',
+    'PERSONAL KIT',
+    'Do read it to understand the structure of the camp.',
+    'Happy learning :)',
+    '\nHead over to https://discord.com/channels/914867137863118919/914867138148335657 and say **hello** to your new coding family.',
 ].join('\n');
 
 const MESSAGES = { WELCOME_MESSAGE, QUESTION_TWO, QUESTION_THREE, QUESTION_FOUR, QUESTION_FIVE, FINAL, ERROR_MAIL };
