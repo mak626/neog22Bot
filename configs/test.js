@@ -14,4 +14,5 @@ module.exports = {
     moderator_channel_id: '914867138668404767',
     hey_tanay_channel_id: '899719140246429786',
     hey_neog_channel_id: '899999010104967198',
+    leaderboard_channel_id: '917020883275628544',
 };
