@@ -6,6 +6,14 @@ const serviceAccount = JSON.parse(process.env.FIREBASE);
 const { logger } = require('../utils/logger');
 const { addOffenceSheet } = require('../excel/spreadsheet_handler');
 
+/**
+ * @typedef {import('../utils/models/FirebaseUser').FirebaseUser} FirebaseUser
+ * @typedef {import('../utils/models/LeaderBoardUser').LeaderBoardUser} LeaderBoardUser
+ * @typedef {import('../utils/models/WarnUser').WarnUser} WarnUser
+ * @typedef {import('../utils/models/WarnUser').WarnOffence} WarnOffence
+ * @typedef {import('../utils/models/SpamLink').SpamLink} SpamLink
+ */
+
 admin.initializeApp({
     credential: admin.credential.cert(serviceAccount),
     databaseURL: process.env.FIREBASE_RTD,
@@ -15,13 +23,7 @@ const dbFirebase = admin.firestore();
 const dbRealtimeDatabase = admin.database();
 logger.firebase('Initializing');
 
-/**
- * @typedef {import('../utils/models/FirebaseUser').FirebaseUser} FirebaseUser
- * @typedef {import('../utils/models/LeaderBoardUser').LeaderBoardUser} LeaderBoardUser
- * @typedef {import('../utils/models/WarnUser').WarnUser} WarnUser
- * @typedef {import('../utils/models/WarnUser').WarnOffence} WarnOffence
- * @typedef {import('../utils/models/SpamLink').SpamLink} SpamLink
- */
+exports.realtimeDb = dbRealtimeDatabase;
 
 /** @type {LeaderBoardUser[]} */
 exports.firebaseLeaderBoardArray = [];
