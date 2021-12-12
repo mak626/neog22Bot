@@ -20,4 +20,10 @@ module.exports = {
         purple: 0x6a0dad,
         cyan: 0x00ffff,
     },
+
+    leaderboardPoints: {
+        pod: 20,
+        team: 10,
+        individual: 5,
+    },
 };

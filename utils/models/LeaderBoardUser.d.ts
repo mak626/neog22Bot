@@ -1,4 +1,4 @@
-export interface LeaderBoardUser {
+export interface GrattitudeLeaderBoardUser {
     id: string;
     name: string;
     discordID: string;
