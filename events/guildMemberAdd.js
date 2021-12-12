@@ -261,7 +261,7 @@ module.exports = {
                     title: 'A new member just arrived!',
                     description: [
                         `Welcome ${user.nickname ? user.nickname : user.displayName} we hope you enjoy your stay here!`,
-                        '\nI am neoG22 Bot,of neoG Camp 2022',
+                        '\nI am neoG22 Bot',
                     ].join('\n'),
                     thumbnail: { url: user.user.displayAvatarURL() },
                     color: COLORS.cyan,
