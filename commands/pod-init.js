@@ -5,6 +5,7 @@ const { findRoleById, sendDissapearingMessage } = require('../utils/functions');
 module.exports = {
     name: 'pod-init',
     admin: true,
+    disable: true,
     usage: `${PREFIX}pod-init <NO_OF PODS>`,
     description: 'Creates Given <NO_OF_PODS> with permissions',
 

@@ -1,10 +1,11 @@
 const Discord = require('discord.js');
 const { PREFIX, COLORS } = require('../utils/constants');
-const { findChannelByName, findRoleById, sendDissapearingMessage, findChannelById } = require('../utils/functions');
+const { findChannelByName, findRoleById, sendDissapearingMessage } = require('../utils/functions');
 
 module.exports = {
     name: 'pod-delete',
     admin: true,
+    disable: true,
     usage: `${PREFIX}pod-delete`,
     description: 'Deletes category CATEGORY_NAME with all its sub channels and roles',
 
