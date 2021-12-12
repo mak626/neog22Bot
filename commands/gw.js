@@ -2,7 +2,9 @@ const Discord = require('discord.js');
 const { updatePodLeaderboard } = require('../firebase/pod_leaderboard');
 const { updateTeamLeaderboard } = require('../firebase/team_leaderboard');
 const { COLORS, PREFIX, leaderboardPoints } = require('../utils/constants');
+const { teams } = require('../assets/data/teams_static.json');
 const { sendDissapearingMessage, findChannelById, checkRole } = require('../utils/functions');
+const { updateIndividualLeaderboard } = require('../firebase/individual_leaderboard');
 
 module.exports = {
     name: 'gw',
@@ -31,6 +33,8 @@ module.exports = {
         if (message.mentions.users.first()) {
             userRole = true;
             role = message.guild.member(message.mentions.users.first());
+            const team = role.roles.cache.find((e) => teams[e.id]);
+            if (!team) return sendDissapearingMessage(message, `${role} does not belong to a team ${member}`);
         }
         if (message.mentions.roles.first()) {
             const roles = await checkRole(message.mentions.roles.first());
@@ -56,14 +60,25 @@ module.exports = {
 
         const authorUser = message.guild.member(message.author);
 
-        embed.setTitle('Congratulations :partying_face: :tada:');
-        embed.setDescription(`${authorUser} awarded ${role} \`${points}\` points`);
-        embed.setColor(role.color);
+        embed
+            .setTitle('Congratulations :partying_face: :tada:')
+            .setDescription(`${authorUser} awarded ${role} \`${points}\` points`)
+            .setColor(role.color);
         if (userRole) embed.setThumbnail(role.user.displayAvatarURL());
 
-        // TODO: Individual leaderboard
-        if (podRole) updatePodLeaderboard(role, points);
-        if (teamRole) updateTeamLeaderboard(role, points);
+        if (userRole) {
+            await updateIndividualLeaderboard(role, {
+                total_points: points,
+                review_points: 0,
+                blog_points: 0,
+                debug_points: 0,
+                project_points: 0,
+                concept_points: 0,
+                meme_points: 0,
+            });
+        }
+        if (podRole) await updatePodLeaderboard(role, points);
+        if (teamRole) await updateTeamLeaderboard(role, points);
 
         const channel = findChannelById(message, client.configs.get(message.guild.id).leaderboard_channel_id);
         await channel.send(embed);

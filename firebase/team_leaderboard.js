@@ -5,11 +5,12 @@ const { realtimeDb } = require('./firebase_handler');
 const { updatePodLeaderboard } = require('./pod_leaderboard');
 const podData = require('../assets/data/pod_static.json');
 
-const firebaseTeamLeaderboard = [];
-
 /**
  * @typedef {import('../utils/models/PodLeaderBoard').TeamLeaderBoard} TeamLeaderBoard
  */
+
+/** @type {TeamLeaderBoard[]} */
+const firebaseTeamLeaderboard = [];
 
 /**
  * Gets the team leaderboard
@@ -38,7 +39,6 @@ exports.updateTeamLeaderboard = async (teamRole, points) => {
             });
         })
         .catch((error) => {
-            console.log(error);
             console.error(`Firebase Realtime: ${error}`);
         });
     const podRole = podData.pods.find((e) => e.teams.some((_e) => _e.id === teamRole.id));
@@ -52,7 +52,7 @@ const listenForTeamLeaderBoardChanges = async () => {
         /** @type {TeamLeaderBoard} */
         const data = dataSnapshot.val();
         firebaseTeamLeaderboard.push(data);
-        logger.firebase(`Added ${data.name} to Team leaderboard Array`);
+        // logger.firebase(`Added ${data.name} to Team leaderboard Array`);
     });
 
     realtimeDb.ref('teams').on('child_changed', (dataSnapshot) => {
@@ -60,7 +60,7 @@ const listenForTeamLeaderBoardChanges = async () => {
         const data = dataSnapshot.val();
         const index = firebaseTeamLeaderboard.findIndex((e) => e.id === data.id);
         firebaseTeamLeaderboard[index] = data;
-        logger.firebase(`Updated ${data.name} in Team leaderboard Array`);
+        // logger.firebase(`Updated ${data.name} in Team leaderboard Array`);
     });
 };
 

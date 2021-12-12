@@ -3,11 +3,12 @@ const Discord = require('discord.js');
 const { logger } = require('../utils/logger');
 const { realtimeDb } = require('./firebase_handler');
 
-const firebasePodLeaderboard = [];
-
 /**
  * @typedef {import('../utils/models/PodLeaderBoard').PodLeaderBoard} PodLeaderBoard
  */
+
+/** @type {PodLeaderBoard[]} */
+const firebasePodLeaderboard = [];
 
 /**
  * Gets the pod leaderboard
@@ -47,7 +48,7 @@ const listenForPodLeaderBoardChanges = async () => {
         /** @type {PodLeaderBoard} */
         const data = dataSnapshot.val();
         firebasePodLeaderboard.push(data);
-        logger.firebase(`Added ${data.name} to POD leaderboard Array`);
+        // logger.firebase(`Added ${data.name} to POD leaderboard Array`);
     });
 
     realtimeDb.ref('pods').on('child_changed', (dataSnapshot) => {
@@ -55,7 +56,7 @@ const listenForPodLeaderBoardChanges = async () => {
         const data = dataSnapshot.val();
         const index = firebasePodLeaderboard.findIndex((e) => e.id === data.id);
         firebasePodLeaderboard[index] = data;
-        logger.firebase(`Updated ${data.name} in POD leaderboard Array`);
+        // logger.firebase(`Updated ${data.name} in POD leaderboard Array`);
     });
 };
 
