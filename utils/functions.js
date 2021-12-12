@@ -1,6 +1,7 @@
 const Discord = require('discord.js');
 const { logger } = require('./logger');
 const { COLORS } = require('./constants');
+const podData = require('../assets/pod_static.json');
 
 module.exports = {
     /**
@@ -77,5 +78,25 @@ module.exports = {
         } catch (e) {
             logger.warn('Tried deleting a message that has already been deleted');
         }
+    },
+
+    /**
+     * Checks whether given role is a team/pod role
+     * @param {Discord.Role} role
+     * @returns {{podRole: boolean;teamRole:boolean}}
+     */
+    async checkRole(role) {
+        const podRole = podData.pods.find((e) => e.id === role.id);
+        if (podRole) return { podRole: true, teamRole: false };
+
+        let teamRole;
+        podData.pods.some((e) => {
+            teamRole = e.teams.find((_e) => _e.id === role.id);
+            if (teamRole) return true;
+            return false;
+        });
+
+        if (teamRole) return { podRole: false, teamRole: true };
+        return { podRole: false, teamRole: false };
     },
 };
