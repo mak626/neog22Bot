@@ -15,17 +15,19 @@ module.exports = {
      */
     async execute(message) {
         const path = './assets/individual_image.png';
-        let html = fs.readFileSync('./assets/individual_leaderboard.html', { encoding: 'utf-8' });
+        const hbs = fs.readFileSync('./views/individual_leaderboard.hbs', { encoding: 'utf-8' });
 
-        const data = await getIndividualLeaderBoard();
-        data.forEach((e, index) => {
+        let data = await getIndividualLeaderBoard();
+        data = data.map((e) => {
             const user = message.guild.members.cache.get(e.id);
             const podRole = message.guild.roles.cache.get(e.podID);
-            html = html.replace(`#SRC${index}`, user.user.displayAvatarURL());
-            html = html.replace(`#NAME${index}`, e.name);
-            html = html.replace(`#TAGNAME${index}`, user.user.tag);
-            html = html.replace(`#POINT${index}`, e.total_points);
-            html = html.replace(`#COLOR${index}`, podRole.hexColor);
+            return {
+                name: e.name,
+                tagName: user.user.tag,
+                src: user.user.displayAvatarURL(),
+                color: podRole.hexColor,
+                points: e.total_points,
+            };
         });
         if (data.length >= 3) {
             await nodeHtmlToImage({
@@ -34,7 +36,9 @@ module.exports = {
                     executablePath: process.env.CHROME_BIN || null,
                     args: ['--no-sandbox', '--headless', '--disable-gpu'],
                 },
-                html,
+                html: hbs,
+                selector: 'body > div > div',
+                content: { type: 'Individual', person: data },
             });
 
             await message.channel.send('', { files: [path] });

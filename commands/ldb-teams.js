@@ -20,16 +20,18 @@ module.exports = {
             return sendDissapearingMessage(message, `You are not wise enough to do that ${message.author}`);
         }
         const path = './assets/team_image.png';
-        let html = fs.readFileSync('./assets/teampod_leaderboard.html', { encoding: 'utf-8' }).replace(new RegExp('#TYPE', 'g'), 'TEAM');
+        const hbs = fs.readFileSync('./views/teampod_leaderboard.hbs', { encoding: 'utf-8' });
 
-        const data = await getTeamLeaderBoard();
-        data.forEach((e, index) => {
+        let data = await getTeamLeaderBoard();
+        data = data.map((e) => {
             const teamRole = message.guild.roles.cache.get(e.id);
             const podRoleID = podData.pods.find((team) => team.teams.some((_e) => _e.id === teamRole.id)).id;
             const podRole = message.guild.roles.cache.get(podRoleID);
-            html = html.replace(`#NAME${index}`, teamRole.name);
-            html = html.replace(`#COLOR${index}`, podRole.hexColor);
-            html = html.replace(`#POINT${index}`, e.points);
+            return {
+                name: teamRole.name,
+                color: podRole.hexColor,
+                points: e.points,
+            };
         });
 
         await nodeHtmlToImage({
@@ -38,7 +40,9 @@ module.exports = {
                 executablePath: process.env.CHROME_BIN || null,
                 args: ['--no-sandbox', '--headless', '--disable-gpu'],
             },
-            html,
+            html: hbs,
+            selector: 'body > div > div',
+            content: { type: 'Team', team: data },
         });
 
         return message.channel.send('', { files: [path] });

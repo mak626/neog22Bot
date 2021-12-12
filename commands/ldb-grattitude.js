@@ -15,15 +15,19 @@ module.exports = {
      */
     async execute(message) {
         const path = './assets/image.png';
-        let html = fs.readFileSync('./assets/leaderboard.html', { encoding: 'utf-8' });
+        const hbs = fs.readFileSync('./views/individual_leaderboard.hbs', { encoding: 'utf-8' });
 
-        const data = await getLeaderBoard();
-        data.forEach((e, index) => {
+        let data = await getLeaderBoard();
+        const orderColors = [{ color: '#f1c40f' }, { color: '#3498db' }, { color: '#2ecc71' }];
+        data = data.map((e, index) => {
             const user = message.guild.members.cache.get(e.id);
-            html = html.replace(`#SRC${index}`, user.user.displayAvatarURL());
-            html = html.replace(`#NAME${index}`, e.name);
-            html = html.replace(`#TAGNAME${index}`, user.user.tag);
-            html = html.replace(`#POINT${index}`, e.points);
+            return {
+                name: e.name,
+                tagName: user.user.tag,
+                src: user.user.displayAvatarURL(),
+                color: orderColors[index].color,
+                points: e.points,
+            };
         });
         if (data.length >= 3) {
             await nodeHtmlToImage({
@@ -32,7 +36,9 @@ module.exports = {
                     executablePath: process.env.CHROME_BIN || null,
                     args: ['--no-sandbox', '--headless', '--disable-gpu'],
                 },
-                html,
+                html: hbs,
+                selector: 'body > div > div',
+                content: { type: 'Grattiude', person: data },
             });
 
             await message.channel.send('', { files: [path] });

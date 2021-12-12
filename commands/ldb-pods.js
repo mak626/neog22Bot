@@ -19,15 +19,17 @@ module.exports = {
             return sendDissapearingMessage(message, `You are not wise enough to do that ${message.author}`);
         }
 
+        const hbs = fs.readFileSync('./views/teampod_leaderboard.hbs', { encoding: 'utf-8' });
         const path = './assets/pod_image.png';
-        let html = fs.readFileSync('./assets/teampod_leaderboard.html', { encoding: 'utf-8' }).replace(new RegExp('#TYPE', 'g'), 'POD');
 
-        const data = await getPodLeaderBoard();
-        data.forEach((e, index) => {
+        let data = await getPodLeaderBoard();
+        data = data.map((e) => {
             const role = message.guild.roles.cache.get(e.id);
-            html = html.replace(`#NAME${index}`, role.name);
-            html = html.replace(`#COLOR${index}`, role.hexColor);
-            html = html.replace(`#POINT${index}`, e.points);
+            return {
+                name: role.name,
+                color: role.hexColor,
+                points: e.points,
+            };
         });
 
         await nodeHtmlToImage({
@@ -36,7 +38,9 @@ module.exports = {
                 executablePath: process.env.CHROME_BIN || null,
                 args: ['--no-sandbox', '--headless', '--disable-gpu'],
             },
-            html,
+            html: hbs,
+            selector: 'body > div > div',
+            content: { type: 'POD', team: data },
         });
 
         return message.channel.send('', { files: [path] });
