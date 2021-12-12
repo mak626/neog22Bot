@@ -18,7 +18,7 @@ const firebaseTeamLeaderboard = [];
  */
 exports.getTeamLeaderBoard = async () => {
     let leaderBoard = firebaseTeamLeaderboard;
-    leaderBoard = leaderBoard.sort((a, b) => b.points - a.points).slice(0, 3);
+    leaderBoard = leaderBoard.sort((a, b) => b.points - a.points).slice(0, 4);
     return leaderBoard;
 };
 

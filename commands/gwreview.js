@@ -17,6 +17,10 @@ module.exports = {
     async execute(message, args, client) {
         const member = message.guild.member(message.author.id);
 
+        if (!message.member.hasPermission('VIEW_AUDIT_LOG')) {
+            return sendDissapearingMessage(message, `You are not wise enough to do that ${message.author}`);
+        }
+
         if (!message.mentions.users.first()) {
             return sendDissapearingMessage(message, `Please mention the user ${member}`);
         }

@@ -2,4 +2,6 @@ info.log
 node_modules
 *.env
 image.png
+team_image.png
+pod_image.png
 remaining_mails.py
