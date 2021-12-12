@@ -23,9 +23,10 @@ module.exports = {
         const path = './assets/pod_image.png';
 
         let data = await getPodLeaderBoard();
-        data = data.map((e) => {
+        data = data.map((e, index) => {
             const role = message.guild.roles.cache.get(e.id);
             return {
+                index: index + 1,
                 name: role.name,
                 color: role.hexColor,
                 points: e.points,

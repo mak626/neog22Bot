@@ -22,6 +22,7 @@ module.exports = {
         data = data.map((e, index) => {
             const user = message.guild.members.cache.get(e.id);
             return {
+                index: index + 1,
                 name: e.name,
                 tagName: user.user.tag,
                 src: user.user.displayAvatarURL(),

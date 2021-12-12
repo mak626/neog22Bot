@@ -18,10 +18,11 @@ module.exports = {
         const hbs = fs.readFileSync('./views/individual_leaderboard.hbs', { encoding: 'utf-8' });
 
         let data = await getIndividualLeaderBoard();
-        data = data.map((e) => {
+        data = data.map((e, index) => {
             const user = message.guild.members.cache.get(e.id);
             const podRole = message.guild.roles.cache.get(e.podID);
             return {
+                index: index + 1,
                 name: e.name,
                 tagName: user.user.tag,
                 src: user.user.displayAvatarURL(),

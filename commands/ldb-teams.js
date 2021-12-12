@@ -23,11 +23,12 @@ module.exports = {
         const hbs = fs.readFileSync('./views/teampod_leaderboard.hbs', { encoding: 'utf-8' });
 
         let data = await getTeamLeaderBoard();
-        data = data.map((e) => {
+        data = data.map((e, index) => {
             const teamRole = message.guild.roles.cache.get(e.id);
             const podRoleID = podData.pods.find((team) => team.teams.some((_e) => _e.id === teamRole.id)).id;
             const podRole = message.guild.roles.cache.get(podRoleID);
             return {
+                index: index + 1,
                 name: teamRole.name,
                 color: podRole.hexColor,
                 points: e.points,
