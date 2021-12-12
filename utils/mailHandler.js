@@ -29,7 +29,7 @@ async function sendMail(email, verificationCode) {
                 {
                     from: `"${process.env.USER_NAME} NO-REPLY" <${process.env.GOOGLE_USER}>`,
                     to: email,
-                    subject: 'Verification For #teamtanay Discord Server',
+                    subject: 'Verification For #neogCamp 2022 Discord Server',
                     html,
                     attachments: [
                         {
