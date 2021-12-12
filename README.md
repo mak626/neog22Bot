@@ -52,6 +52,11 @@ Discord bot for #TeamTanay Community Discord Channel
 - Usage: `#gwdebug <@user-name> [mark]`
 - Description: Grades debugging mark to a user from server
 
+#### gwmeme
+
+- Usage: `#gwmeme <@user-name> [mark]`
+- Description: Grades meme mark to a user from server
+
 #### gwproject
 
 - Usage: `#gwproject <@user-name> [mark]`
