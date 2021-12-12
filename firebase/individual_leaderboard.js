@@ -3,6 +3,7 @@ const Discord = require('discord.js');
 const { logger } = require('../utils/logger');
 const { realtimeDb } = require('./firebase_handler');
 const { teams } = require('../assets/data/teams_static.json');
+const podData = require('../assets/data/pod_static.json');
 const { updateTeamLeaderboard } = require('./team_leaderboard');
 /**
  * @typedef {import('../utils/models/PodLeaderBoard').IndividualLeaderBoard} IndividualLeaderBoard
@@ -25,7 +26,7 @@ exports.getIndividualLeaderBoard = async (type) => {
 
 /**
  * Updates points of user in Leaderboard
- * @param {Discord.User} user
+ * @param {Discord.GuildMember} user
  * @param {Points} pointsData
  */
 exports.updateIndividualLeaderboard = async (user, pointsData) => {
@@ -46,10 +47,14 @@ exports.updateIndividualLeaderboard = async (user, pointsData) => {
                     meme_points: data.meme_points + pointsData.meme_points,
                 });
             } else {
+                const teamRole = user.roles.cache.find((e) => teams[e.id]);
+                const podRole = podData.pods.find((e) => e.teams.some((_e) => _e.id === teamRole.id));
                 const data = {
                     id: user.id,
                     name: user.nickname ? user.nickname : user.displayName,
                     discordID: user.user.tag,
+                    teamID: teamRole.id,
+                    podID: podRole.id,
                     total_points: pointsData.total_points,
                     review_points: pointsData.review_points,
                     blog_points: pointsData.blog_points,

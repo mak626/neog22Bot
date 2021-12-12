@@ -13,7 +13,9 @@ export interface TeamLeaderBoard {
 export interface IndividualLeaderBoard {
     id: string;
     name: string;
-    discordID: user.user.tag;
+    discordID: string;
+    teamID: string;
+    podID: string;
     total_points: number;
     review_points: number;
     blog_points: number;
