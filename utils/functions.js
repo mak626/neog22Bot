@@ -1,7 +1,7 @@
 const Discord = require('discord.js');
 const { logger } = require('./logger');
 const { COLORS } = require('./constants');
-const podData = require('../assets/pod_static.json');
+const podData = require('../assets/data/pod_static.json');
 
 module.exports = {
     /**

@@ -3,8 +3,7 @@ const Discord = require('discord.js');
 const { logger } = require('../utils/logger');
 const { realtimeDb } = require('./firebase_handler');
 const { updatePodLeaderboard } = require('./pod_leaderboard');
-const { leaderboardPoints } = require('../utils/constants');
-const podData = require('../assets/pod_static.json');
+const podData = require('../assets/data/pod_static.json');
 
 const firebaseTeamLeaderboard = [];
 
