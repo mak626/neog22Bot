@@ -5,8 +5,8 @@ const { PREFIX, COLORS } = require('../utils/constants');
 const { getLeaderBoard } = require('../firebase/firebase_handler');
 
 module.exports = {
-    name: 'leaderboard',
-    usage: `${PREFIX}leaderboard`,
+    name: 'ldb-grattitude',
+    usage: `${PREFIX}ldb-grattitude`,
     description: 'Shows the leaderboard of Grattitude',
 
     /**
