@@ -15,10 +15,9 @@ const firebaseIndividualLeaderboard = [];
 
 /**
  * Gets the indiviual leaderboard
- * @param {string} type
  * @returns {Promise<IndividualLeaderBoard[]>}
  */
-exports.getIndividualLeaderBoard = async (type) => {
+exports.getIndividualLeaderBoard = async () => {
     let leaderBoard = firebaseIndividualLeaderboard;
     leaderBoard = leaderBoard.sort((a, b) => b.total_points - a.total_points).slice(0, 3);
     return leaderBoard;

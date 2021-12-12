@@ -16,6 +16,7 @@ module.exports = {
      */
     async execute(message, args, client) {
         const member = message.guild.member(message.author.id);
+        args = args.filter((e) => e.trim() !== '');
 
         if (!message.member.hasPermission('VIEW_AUDIT_LOG')) {
             return sendDissapearingMessage(message, `You are not wise enough to do that ${message.author}`);
