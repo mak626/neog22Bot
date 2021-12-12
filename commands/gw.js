@@ -57,11 +57,11 @@ module.exports = {
         const authorUser = message.guild.member(message.author);
 
         embed.setTitle('Congratulations :partying_face: :tada:');
-        embed.setDescription(`\`${authorUser.displayName}\` awarded ${role} \`${points}\` points`);
+        embed.setDescription(`${authorUser} awarded ${role} \`${points}\` points`);
         embed.setColor(role.color);
         if (userRole) embed.setThumbnail(role.user.displayAvatarURL());
 
-        //TODO: Individual leaderboard
+        // TODO: Individual leaderboard
         if (podRole) updatePodLeaderboard(role, points);
         if (teamRole) updateTeamLeaderboard(role, points);
 
