@@ -114,7 +114,7 @@ Discord bot for #neoG22 Discord Channel
 #### pod-delete
 
 - Usage: `!pod-delete`
-- Description: Deletes category CATEGORY_NAME with all its sub channels and roles
+- Description: Deletes all pods and its associated roles
 
 #### pod-init
 

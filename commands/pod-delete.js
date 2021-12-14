@@ -7,7 +7,7 @@ module.exports = {
     admin: true,
     disable: true,
     usage: `${PREFIX}pod-delete`,
-    description: 'Deletes category CATEGORY_NAME with all its sub channels and roles',
+    description: 'Deletes all pods and its associated roles',
 
     /**
      * @param {Discord.Message} message
