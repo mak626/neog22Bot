@@ -13,192 +13,192 @@ Discord bot for #neoG22 Discord Channel
 
 #### ban
 
-- Usage: `#ban <@user-name> <reason>`
+- Usage: `!ban <@user-name> <reason>`
 - Description: Bans a member from server
 
 #### clear
 
-- Usage: `#clear <NUMBER>`
+- Usage: `!clear <NUMBER>`
 - Description: Clear upto 100 messages
 
 #### dm-unverified
 
-- Usage: `#dm-unverified`
+- Usage: `!dm-unverified`
 - Description: Alerts unverified users to verify themselves by sending DM and adds unverified role to users
 
 #### find-user
 
-- Usage: `#find-user <@user_name>`
+- Usage: `!find-user <@user_name>`
 - Description: Gives information about given user
 
 #### gw
 
-- Usage: `#gw <@user-name> | <@team_role> | <@pod_role>  [mark]`
+- Usage: `!gw <@user-name> | <@team_role> | <@pod_role>  [mark]`
 - Description: Grades mark to a user | team | pod from server
 
 #### gwblog
 
-- Usage: `#gwblog <@user-name> [mark]`
+- Usage: `!gwblog <@user-name> [mark]`
 - Description: Grades blog mark to a user from server
 
 #### gwconcept
 
-- Usage: `#gwconcept <@user-name> [mark]`
+- Usage: `!gwconcept <@user-name> [mark]`
 - Description: Grades concepts mark to a user from server
 
 #### gwdebug
 
-- Usage: `#gwdebug <@user-name> [mark]`
+- Usage: `!gwdebug <@user-name> [mark]`
 - Description: Grades debugging mark to a user from server
 
 #### gwmeme
 
-- Usage: `#gwmeme <@user-name> [mark]`
+- Usage: `!gwmeme <@user-name> [mark]`
 - Description: Grades meme mark to a user from server
 
 #### gwproject
 
-- Usage: `#gwproject <@user-name> [mark]`
+- Usage: `!gwproject <@user-name> [mark]`
 - Description: Grades project mark to a user from server
 
 #### gwreview
 
-- Usage: `#gwreview <@user-name> [mark]`
+- Usage: `!gwreview <@user-name> [mark]`
 - Description: Grades review mark to a user from server
 
 #### help-tt-v
 
-- Usage: `#help-tt-v`
+- Usage: `!help-tt-v`
 - Description: Gives detailed information about commands
 
 #### help-tt
 
-- Usage: `#help-tt`
+- Usage: `!help-tt`
 - Description: Gives basic information about commands
 
 #### kick
 
-- Usage: `#kick <@user-name> <reason>`
+- Usage: `!kick <@user-name> <reason>`
 - Description: Kicks a member from server
 
 #### ldb-category
 
-- Usage: `#ldb-category [@role]`
+- Usage: `!ldb-category [@role]`
 - Description: Shows the category individual leaderboard
 
 #### ldb-grattitude
 
-- Usage: `#ldb-grattitude`
+- Usage: `!ldb-grattitude`
 - Description: Shows the leaderboard of Grattitude
 
 #### ldb-individual
 
-- Usage: `#ldb-individual`
+- Usage: `!ldb-individual`
 - Description: Shows the individual leaderboard
 
 #### ldb-pods
 
-- Usage: `#ldb-pods`
+- Usage: `!ldb-pods`
 - Description: Shows the leaderboard of pods
 
 #### ldb-teams
 
-- Usage: `#ldb-teams`
+- Usage: `!ldb-teams`
 - Description: Shows the leaderboard of teams
 
 #### myrank
 
-- Usage: `#myrank`
+- Usage: `!myrank`
 - Description: Shows your rank
 
 #### pod-delete
 
-- Usage: `#pod-delete`
+- Usage: `!pod-delete`
 - Description: Deletes category CATEGORY_NAME with all its sub channels and roles
 
 #### pod-init
 
-- Usage: `#pod-init <NO_OF PODS>`
+- Usage: `!pod-init <NO_OF PODS>`
 - Description: Creates Given <NO_OF_PODS> with permissions
 
 #### prune
 
-- Usage: `#prune`
+- Usage: `!prune`
 - Description: Prunes unverified member from server
 
 #### role-add
 
-- Usage: `#role-add <@role_name> <@username> [..@username_N]`
+- Usage: `!role-add <@role_name> <@username> [..@username_N]`
 - Description: Assigns the given role_name to given users
 
 #### role-excel
 
-- Usage: `#role-excel <@role_name>`
+- Usage: `!role-excel <@role_name>`
 - Description: Assigns the given role_name to given users from excel sheet neoGrad
 
 #### role-remove
 
-- Usage: `#role-remove <@role_name> <@username> [..@username_N]`
+- Usage: `!role-remove <@role_name> <@username> [..@username_N]`
 - Description: Removes the given role_name from given users
 
 #### server-info
 
-- Usage: `#server-info`
+- Usage: `!server-info`
 - Description: Gives information about the server
 
 #### spam-add
 
-- Usage: `#spam-add <link>`
+- Usage: `!spam-add <link>`
 - Description: Adds a spam link for auto kicking
 
 #### spam-list
 
-- Usage: `#spam-list`
+- Usage: `!spam-list`
 - Description: View the current spam links for auto kicking
 
 #### spam-remove
 
-- Usage: `#spam-remove <link>`
+- Usage: `!spam-remove <link>`
 - Description: Removes a spam link from auto kicking
 
 #### temp
 
-- Usage: `#pod-delete`
+- Usage: `!pod-delete`
 - Description: Deletes category CATEGORY_NAME with all its sub channels and roles
 
 #### thank
 
-- Usage: `#thanks OR ty OR thankyou <@user-name> [reason]`
+- Usage: `!thanks OR ty OR thankyou <@user-name> [reason]`
 - Description: Thanks a member from server
 
 #### update-database
 
-- Usage: `#update-database`
+- Usage: `!update-database`
 - Description: CAUTION: Adds current list of users to "Database" excel sheet and firebase.
 
 #### verify-me
 
-- Usage: `#verify-me`
+- Usage: `!verify-me`
 - Description: Verify yourself at server
 
 #### verify-status
 
-- Usage: `#verify-status`
+- Usage: `!verify-status`
 - Description: Check verification command status and sendgrid details
 
 #### warn-add
 
-- Usage: `#warn-add <@user-name> <reason>`
+- Usage: `!warn-add <@user-name> <reason>`
 - Description: Adds a warning to given user and increments warn count
 
 #### warn-count
 
-- Usage: `#warn-count <@user-name>`
+- Usage: `!warn-count <@user-name>`
 - Description: Gives history and count of warnings of a user
 
 #### warn-reset
 
-- Usage: `#warn-reset <@user-name>`
+- Usage: `!warn-reset <@user-name>`
 - Description: Resets the warning count to 0 for a user
 
 <!-- COMMANDS:END - DO NOT DELETE -->
