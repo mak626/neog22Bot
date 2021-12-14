@@ -8,6 +8,7 @@ const { updateTeamLeaderboard } = require('./team_leaderboard');
 /**
  * @typedef {import('../utils/models/PodLeaderBoard').IndividualLeaderBoard} IndividualLeaderBoard
  * @typedef {import('../utils/models/PodLeaderBoard').Points} Points
+ * @typedef {import('../utils/models/PodLeaderBoard').LeaderboardCategoryType} LeaderboardCategory
  */
 
 /** @type {IndividualLeaderBoard[]} */
@@ -24,6 +25,27 @@ exports.getIndividualLeaderBoard = async () => {
 };
 
 /**
+ * Gets the category leaderboard
+ * @param {string} podId
+ * @returns {Promise<LeaderboardCategory>}
+ */
+exports.getCategoryLeaderBoard = async (podId) => {
+    let leaderBoard = firebaseIndividualLeaderboard;
+    if (podId) leaderBoard = leaderBoard.filter((e) => e.podID === podId);
+
+    const data = {
+        total: leaderBoard.sort((a, b) => b.total_points - a.total_points)[0],
+        review: leaderBoard.sort((a, b) => b.review_points - a.review_points)[0],
+        blog: leaderBoard.sort((a, b) => b.blog_points - a.blog_points)[0],
+        debug: leaderBoard.sort((a, b) => b.debug_points - a.debug_points)[0],
+        project: leaderBoard.sort((a, b) => b.project_points - a.project_points)[0],
+        concept: leaderBoard.sort((a, b) => b.concept_points - a.concept_points)[0],
+        meme: leaderBoard.sort((a, b) => b.meme_points - a.meme_points)[0],
+    };
+    return data;
+};
+
+/**
  * Updates points of user in Leaderboard
  * @param {Discord.GuildMember} user
  * @param {Points} pointsData
@@ -35,8 +57,12 @@ exports.updateIndividualLeaderboard = async (user, pointsData) => {
         .then((snapshot) => {
             if (snapshot.exists()) {
                 const data = snapshot.val();
+                const teamRole = user.roles.cache.find((e) => teams[e.id]);
+                const podRole = podData.pods.find((e) => e.teams.some((_e) => _e.id === teamRole.id));
                 realtimeDb.ref(`individual/${user.id}`).set({
                     ...data,
+                    teamID: teamRole.id,
+                    podID: podRole.id,
                     total_points: data.total_points + pointsData.total_points,
                     review_points: data.review_points + pointsData.review_points,
                     blog_points: data.blog_points + pointsData.blog_points,

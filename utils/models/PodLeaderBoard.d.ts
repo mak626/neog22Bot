@@ -34,3 +34,13 @@ export interface Points {
     concept_points: number;
     meme_points: number;
 }
+
+export interface LeaderboardCategoryType {
+    total: IndividualLeaderBoard;
+    review: IndividualLeaderBoard;
+    blog: IndividualLeaderBoard;
+    debug: IndividualLeaderBoard;
+    project: IndividualLeaderBoard;
+    concept: IndividualLeaderBoard;
+    meme: IndividualLeaderBoard;
+}
