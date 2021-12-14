@@ -43,12 +43,12 @@ module.exports = {
             });
 
             await message.channel.send('', { files: [path] });
-            return message.channel.send(`Use \`${PREFIX}myhelprank\` command to see where you stand in helping your community`);
+            return message.channel.send(`Use \`${PREFIX}myrank\` command to see where you stand in helping your community`);
         }
         const embed = new Discord.MessageEmbed()
             .setColor(COLORS.red)
             .setTitle('LeaderBoard is being prepared')
-            .setDescription(`Use \`${PREFIX}myhelprank\` command to see where you stand in helping your community`);
+            .setDescription(`Use \`${PREFIX}myrank\` command to see where you stand in helping your community`);
         return message.channel.send(embed);
     },
 };

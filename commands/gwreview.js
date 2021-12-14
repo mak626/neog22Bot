@@ -55,11 +55,6 @@ module.exports = {
         await updateIndividualLeaderboard(taggedUser, {
             total_points: points,
             review_points: points,
-            blog_points: 0,
-            debug_points: 0,
-            project_points: 0,
-            concept_points: 0,
-            meme_points: 0,
         });
 
         const channel = findChannelById(message, client.configs.get(message.guild.id).leaderboard_channel_id);

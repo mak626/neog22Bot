@@ -97,6 +97,6 @@ module.exports = {
         });
 
         await message.channel.send('', { files: [path] });
-        return message.channel.send(`Use \`${PREFIX}myhelprank\` command to see where you stand in helping your community`);
+        return message.channel.send(`Use \`${PREFIX}myrank\` command to see where you stand in helping your community`);
     },
 };

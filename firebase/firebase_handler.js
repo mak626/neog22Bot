@@ -228,82 +228,6 @@ exports.addNewMember = async ({ user, name, email, verificationCode, github, ver
 
 // USER FUNCTIONS : END ----------------------
 
-// LEADERBOARD FUNCTIONS  ----------------------
-
-/**
- * Gets the top 3 leaderboard users
- * @returns {Promise<LeaderBoardUser[]>}
- */
-exports.getLeaderBoard = async () => {
-    let leaderBoard = this.firebaseLeaderBoardArray;
-    leaderBoard = leaderBoard.sort((a, b) => b.points - a.points).slice(0, 3);
-    return leaderBoard;
-};
-
-/**
- * Gets the user in leaderboard
- * @param {Discord.GuildMember} user
- * @returns {Promise<LeaderBoardUser>}
- */
-exports.getUserLeaderBoard = async (user) => {
-    let leaderBoard = this.firebaseLeaderBoardArray;
-    leaderBoard = leaderBoard.sort((a, b) => b.points - a.points);
-    const rank = leaderBoard.findIndex((e) => e.id === user.id);
-    if (rank !== -1) return { ...leaderBoard[rank], rank: rank + 1 };
-    return undefined;
-};
-
-/**
- * Updates points of user in Leaderboard
- * @param {Discord.GuildMember} user
- */
-exports.updateLeaderBoard = async (user) => {
-    dbRealtimeDatabase
-        .ref(`leaderboard/${user.id}`)
-        .get()
-        .then((snapshot) => {
-            if (snapshot.exists()) {
-                const data = snapshot.val();
-                dbRealtimeDatabase.ref(`leaderboard/${user.id}`).set({
-                    ...data,
-                    points: data.points + 1,
-                });
-            } else {
-                const data = {
-                    id: user.id,
-                    name: user.nickname ? user.nickname : user.displayName,
-                    discordID: user.user.tag,
-                    points: 1,
-                };
-                dbRealtimeDatabase.ref(`leaderboard/${user.id}`).set(data);
-            }
-        })
-        .catch((error) => {
-            console.error(`Firebase Realtime: ${error}`);
-        });
-};
-
-const listenForLeaderBoardChanges = async () => {
-    logger.firebase('Listening for leaderboard changes');
-
-    dbRealtimeDatabase.ref('leaderboard').on('child_added', (dataSnapshot) => {
-        /** @type {LeaderBoardUser} */
-        const data = dataSnapshot.val();
-        this.firebaseLeaderBoardArray.push(data);
-        // logger.firebase(`Added ${data.discordID} to leaderboard Array`);
-    });
-
-    dbRealtimeDatabase.ref('leaderboard').on('child_changed', (dataSnapshot) => {
-        /** @type {LeaderBoardUser} */
-        const data = dataSnapshot.val();
-        const index = this.firebaseLeaderBoardArray.findIndex((e) => e.id === data.id);
-        this.firebaseLeaderBoardArray[index] = data;
-        // logger.firebase(`Updated ${data.discordID} in leaderboard Array`);
-    });
-};
-
-// LEADERBOARD FUNCTIONS : END ----------------------
-
 // WARN FUNCTIONS  ---------------------
 
 /**
@@ -461,6 +385,5 @@ const listenForSpamLinkChanges = async () => {
 
 // SPAM LIN FUNCTIONS : END ----------------------
 
-listenForLeaderBoardChanges();
 listenForWarnChanges();
 listenForSpamLinkChanges();

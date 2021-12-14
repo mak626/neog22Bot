@@ -1,5 +1,5 @@
 const Discord = require('discord.js');
-const { updateLeaderBoard } = require('../firebase/firebase_handler');
+const { updateIndividualLeaderboard } = require('../firebase/individual_leaderboard');
 const { COLORS, PREFIX } = require('../utils/constants');
 const { sendDissapearingMessage, findChannelById } = require('../utils/functions');
 
@@ -43,7 +43,9 @@ module.exports = {
         embed.setTitle('Thank you :partying_face:');
         embed.setDescription(`\`${taggedUser.displayName}\` for helping \`${authorUser.displayName}\`\n\n**Reason**: ${reason}`);
         embed.setThumbnail(tagUser.displayAvatarURL());
-        await updateLeaderBoard(taggedUser);
+        await updateIndividualLeaderboard(taggedUser, {
+            grattitude_points: 1,
+        });
         const channel = findChannelById(message, client.configs.get(message.guild.id).grattitude_channel_id);
 
         await channel.send(embed);

@@ -74,12 +74,6 @@ module.exports = {
         if (userRole) {
             await updateIndividualLeaderboard(role, {
                 total_points: points,
-                review_points: 0,
-                blog_points: 0,
-                debug_points: 0,
-                project_points: 0,
-                concept_points: 0,
-                meme_points: 0,
             });
         }
         if (podRole) await updatePodLeaderboard(role, points);

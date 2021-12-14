@@ -14,6 +14,21 @@ const { updateTeamLeaderboard } = require('./team_leaderboard');
 /** @type {IndividualLeaderBoard[]} */
 const firebaseIndividualLeaderboard = [];
 
+// LEADERBOARD FUNCTIONS  ----------------------
+
+/**
+ * Gets the user in leaderboard
+ * @param {Discord.GuildMember} user
+ * @returns {Promise<IndividualLeaderBoard> | undefined}
+ */
+exports.getUserLeaderBoard = async (user) => {
+    let leaderBoard = firebaseIndividualLeaderboard;
+    leaderBoard = leaderBoard.sort((a, b) => b.total_points - a.total_points);
+    const rank = leaderBoard.findIndex((e) => e.id === user.id);
+    if (rank !== -1) return { ...leaderBoard[rank], rank: rank + 1 };
+    return undefined;
+};
+
 /**
  * Gets the indiviual leaderboard
  * @returns {Promise<IndividualLeaderBoard[]>}
@@ -46,11 +61,32 @@ exports.getCategoryLeaderBoard = async (podId) => {
 };
 
 /**
+ * Gets the indiviual grattitude leaderboard
+ * @returns {Promise<IndividualLeaderBoard[]>}
+ */
+exports.getGrattidueLeaderBoard = async () => {
+    let leaderBoard = firebaseIndividualLeaderboard;
+    leaderBoard = leaderBoard.sort((a, b) => b.grattitude_points - a.grattitude_points).slice(0, 3);
+    return leaderBoard;
+};
+
+/**
  * Updates points of user in Leaderboard
  * @param {Discord.GuildMember} user
- * @param {Points} pointsData
+ * @param {Points}  givenPoints
  */
-exports.updateIndividualLeaderboard = async (user, pointsData) => {
+exports.updateIndividualLeaderboard = async (user, givenPoints) => {
+    const pointsData = {
+        total_points: 0,
+        review_points: 0,
+        blog_points: 0,
+        debug_points: 0,
+        project_points: 0,
+        concept_points: 0,
+        meme_points: 0,
+        grattitude_points: 0,
+        ...givenPoints,
+    };
     realtimeDb
         .ref(`individual/${user.id}`)
         .get()
@@ -70,6 +106,7 @@ exports.updateIndividualLeaderboard = async (user, pointsData) => {
                     project_points: data.project_points + pointsData.project_points,
                     concept_points: data.concept_points + pointsData.concept_points,
                     meme_points: data.meme_points + pointsData.meme_points,
+                    grattitude_points: data.grattitude_points + pointsData.grattitude_points,
                 });
             } else {
                 const teamRole = user.roles.cache.find((e) => teams[e.id]);
@@ -87,6 +124,7 @@ exports.updateIndividualLeaderboard = async (user, pointsData) => {
                     project_points: pointsData.project_points,
                     concept_points: pointsData.concept_points,
                     meme_points: pointsData.meme_points,
+                    grattitude_points: pointsData.grattitude_points,
                 };
                 realtimeDb.ref(`individual/${user.id}`).set(data);
             }

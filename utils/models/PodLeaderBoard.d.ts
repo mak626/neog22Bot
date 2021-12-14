@@ -23,6 +23,8 @@ export interface IndividualLeaderBoard {
     project_points: number;
     concept_points: number;
     meme_points: number;
+    grattitude_points: number;
+    rank: ?number;
 }
 
 export interface Points {
@@ -33,6 +35,7 @@ export interface Points {
     project_points: number;
     concept_points: number;
     meme_points: number;
+    grattitude_points: number;
 }
 
 export interface LeaderboardCategoryType {
@@ -43,4 +46,5 @@ export interface LeaderboardCategoryType {
     project: IndividualLeaderBoard;
     concept: IndividualLeaderBoard;
     meme: IndividualLeaderBoard;
+    grattitude_points: IndividualLeaderBoard;
 }

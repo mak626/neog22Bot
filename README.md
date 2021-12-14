@@ -82,15 +82,35 @@ Discord bot for #TeamTanay Community Discord Channel
 - Usage: `#kick <@user-name> <reason>`
 - Description: Kicks a member from server
 
+#### ldb-category
+
+- Usage: `#ldb-category [@role]`
+- Description: Shows the category individual leaderboard
+
 #### ldb-grattitude
 
 - Usage: `#ldb-grattitude`
 - Description: Shows the leaderboard of Grattitude
 
-#### myhelprank
+#### ldb-individual
 
-- Usage: `#myhelprank`
-- Description: Shows your rank of Grattitude
+- Usage: `#ldb-individual`
+- Description: Shows the individual leaderboard
+
+#### ldb-pods
+
+- Usage: `#ldb-pods`
+- Description: Shows the leaderboard of pods
+
+#### ldb-teams
+
+- Usage: `#ldb-teams`
+- Description: Shows the leaderboard of teams
+
+#### myrank
+
+- Usage: `#myrank`
+- Description: Shows your rank
 
 #### pod-delete
 
