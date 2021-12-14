@@ -1,8 +1,8 @@
-# Grattitude Bot
+# NeoG 22 Discord Bot
 
 ![Logo](https://neog.camp/logo.svg)
 
-Discord bot for #TeamTanay Community Discord Channel
+Discord bot for #neoG22 Discord Channel
 
 [![Deploy Azure](https://github.com/mak626/neog22Bot/actions/workflows/azure.yml/badge.svg?branch=master)](https://github.com/mak626/neog22Bot/actions/workflows/azure.yml)
 
