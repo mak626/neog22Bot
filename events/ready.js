@@ -12,7 +12,7 @@ module.exports = {
         if (PREFIX === '!') logger.warn('PRODUCTION_MODE');
         else logger.debug('DEVELOPMENT_MODE');
 
-        logger.info('Grattitude Bot Is Ready!');
+        logger.info('neoG22 Bot Is Ready!');
         logger.info(`PREFIX: ${PREFIX}`);
         logger.info('Handling Guilds:', guilds.join(', '));
     },
