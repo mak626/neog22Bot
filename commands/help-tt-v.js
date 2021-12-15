@@ -27,6 +27,7 @@ module.exports = {
                 };
 
                 if (command.hidden) return 'HIDDEN';
+                if (command.disabled) return 'HIDDEN';
                 if (command.moderator && moderators) return description;
                 if (command.admin && admins) return description;
                 if (command.admin || command.moderator) return 'DELETE';

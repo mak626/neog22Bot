@@ -20,7 +20,9 @@ module.exports = {
             .map((file) => {
                 const command = require(`./${file}`);
                 const description = `\`${command.usage === undefined ? '-' : command.usage}\``;
+
                 if (command.hidden) return 'HIDDEN';
+                if (command.disabled) return 'HIDDEN';
                 if (command.moderator && moderators) return description;
                 if (command.admin && admins) return description;
                 if (command.admin || command.moderator) return 'DELETE';
