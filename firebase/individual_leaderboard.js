@@ -49,14 +49,15 @@ exports.getCategoryLeaderBoard = async (podId) => {
     if (podId) leaderBoard = leaderBoard.filter((e) => e.podID === podId);
 
     const data = {
-        total: leaderBoard.sort((a, b) => b.total_points - a.total_points)[0],
-        review: leaderBoard.sort((a, b) => b.review_points - a.review_points)[0],
-        blog: leaderBoard.sort((a, b) => b.blog_points - a.blog_points)[0],
-        debug: leaderBoard.sort((a, b) => b.debug_points - a.debug_points)[0],
-        project: leaderBoard.sort((a, b) => b.project_points - a.project_points)[0],
-        concept: leaderBoard.sort((a, b) => b.concept_points - a.concept_points)[0],
-        meme: leaderBoard.sort((a, b) => b.meme_points - a.meme_points)[0],
+        total: leaderBoard.filter((e) => e.total_points).sort((a, b) => b.total_points - a.total_points)[0],
+        review: leaderBoard.filter((e) => e.review_points).sort((a, b) => b.review_points - a.review_points)[0],
+        blog: leaderBoard.filter((e) => e.blog_points).sort((a, b) => b.blog_points - a.blog_points)[0],
+        debug: leaderBoard.filter((e) => e.debug_points).sort((a, b) => b.debug_points - a.debug_points)[0],
+        project: leaderBoard.filter((e) => e.project_points).sort((a, b) => b.project_points - a.project_points)[0],
+        concept: leaderBoard.filter((e) => e.concept_points).sort((a, b) => b.concept_points - a.concept_points)[0],
+        meme: leaderBoard.filter((e) => e.meme_points).sort((a, b) => b.meme_points - a.meme_points)[0],
     };
+
     return data;
 };
 

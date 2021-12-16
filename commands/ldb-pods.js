@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-unused-vars
 const Discord = require('discord.js');
 const fs = require('fs');
 const nodeHtmlToImage = require('node-html-to-image');

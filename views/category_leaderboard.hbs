@@ -93,24 +93,26 @@
                     </li>
 
                     {{#each category}}
-                        <li class='c-list__item'>
-                            <div class='c-list__grid'>
-                                <div
-                                    class='c-flag c-place u-bg--transparent u-text--dark'
-                                    style='background: {{color}} !important; width:80px;'
-                                >{{type}}</div>
-                                <div class='c-media'>
-                                    <img class='c-avatar c-media__img' src='{{src}}' alt='' />
-                                    <div class='c-media__content'>
-                                        <div class='c-media__title'>{{name}}</div>
-                                        <a class='c-media__link u-text--small' target='_blank'>{{tagName}}</a>
+                        {{#if name}}
+                            <li class='c-list__item'>
+                                <div class='c-list__grid'>
+                                    <div
+                                        class='c-flag c-place u-bg--transparent u-text--dark'
+                                        style='background: {{color}} !important; width:80px;'
+                                    >{{type}}</div>
+                                    <div class='c-media'>
+                                        <img class='c-avatar c-media__img' src='{{src}}' alt='' />
+                                        <div class='c-media__content'>
+                                            <div class='c-media__title'>{{name}}</div>
+                                            <a class='c-media__link u-text--small' target='_blank'>{{tagName}}</a>
+                                        </div>
+                                    </div>
+                                    <div class='u-text--right c-kudos' style='color: {{color}};'>
+                                        <div class='u-mt--8'><strong>{{points}}</strong></div>
                                     </div>
                                 </div>
-                                <div class='u-text--right c-kudos' style='color: {{color}};'>
-                                    <div class='u-mt--8'><strong>{{points}}</strong></div>
-                                </div>
-                            </div>
-                        </li>
+                            </li>
+                        {{/if}}
                     {{/each}}
                 </ul>
             </div>

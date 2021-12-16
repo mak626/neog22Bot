@@ -27,7 +27,7 @@ module.exports = {
                 tagName: user.user.tag,
                 src: user.user.displayAvatarURL(),
                 color: orderColors[index].color,
-                points: e.points,
+                points: e.grattitude_points,
             };
         });
 

@@ -92,18 +92,20 @@
                         </div>
                     </li>
                     {{#each team}}
-                        <li class='c-list__item'>
-                            <div class='c-list__grid'>
-                                <div
-                                    class='c-flag c-place u-bg--transparent u-text--dark'
-                                    style='background: {{color}} !important;'
-                                >{{index}}</div>
-                                <div class='u-text--center u-mt--8'>{{name}}</div>
-                                <div class='u-text--right c-kudos' style='color: {{color}};'>
-                                    <div class='u-mt--8'><strong>{{points}}</strong></div>
+                        {{#if name}}
+                            <li class='c-list__item'>
+                                <div class='c-list__grid'>
+                                    <div
+                                        class='c-flag c-place u-bg--transparent u-text--dark'
+                                        style='background: {{color}} !important;'
+                                    >{{index}}</div>
+                                    <div class='u-text--center u-mt--8'>{{name}}</div>
+                                    <div class='u-text--right c-kudos' style='color: {{color}};'>
+                                        <div class='u-mt--8'><strong>{{points}}</strong></div>
+                                    </div>
                                 </div>
-                            </div>
-                        </li>
+                            </li>
+                        {{/if}}
                     {{/each}}
                 </ul>
             </div>
