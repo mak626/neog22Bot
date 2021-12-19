@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 // eslint-disable-next-line no-unused-vars
 const Discord = require('discord.js');
 const { logger } = require('../utils/logger');
@@ -76,18 +77,19 @@ exports.getGrattidueLeaderBoard = async () => {
  * @param {Discord.GuildMember} user
  * @param {Points}  givenPoints
  */
-exports.updateIndividualLeaderboard = async (user, givenPoints) => {
-    const pointsData = {
-        total_points: 0,
-        review_points: 0,
-        blog_points: 0,
-        debug_points: 0,
-        project_points: 0,
-        concept_points: 0,
-        meme_points: 0,
-        grattitude_points: 0,
-        ...givenPoints,
-    };
+exports.updateIndividualLeaderboard = async (
+    user,
+    {
+        total_points = 0,
+        review_points = 0,
+        blog_points = 0,
+        debug_points = 0,
+        project_points = 0,
+        concept_points = 0,
+        meme_points = 0,
+        grattitude_points = 0,
+    }
+) => {
     realtimeDb
         .ref(`individual/${user.id}`)
         .get()
@@ -100,14 +102,14 @@ exports.updateIndividualLeaderboard = async (user, givenPoints) => {
                     ...data,
                     teamID: teamRole.id,
                     podID: podRole.id,
-                    total_points: data.total_points + pointsData.total_points,
-                    review_points: data.review_points + pointsData.review_points,
-                    blog_points: data.blog_points + pointsData.blog_points,
-                    debug_points: data.debug_points + pointsData.debug_points,
-                    project_points: data.project_points + pointsData.project_points,
-                    concept_points: data.concept_points + pointsData.concept_points,
-                    meme_points: data.meme_points + pointsData.meme_points,
-                    grattitude_points: data.grattitude_points + pointsData.grattitude_points,
+                    total_points: data.total_points + total_points,
+                    review_points: data.review_points + review_points,
+                    blog_points: data.blog_points + blog_points,
+                    debug_points: data.debug_points + debug_points,
+                    project_points: data.project_points + project_points,
+                    concept_points: data.concept_points + concept_points,
+                    meme_points: data.meme_points + meme_points,
+                    grattitude_points: data.grattitude_points + grattitude_points,
                 });
             } else {
                 const teamRole = user.roles.cache.find((e) => teams[e.id]);
@@ -118,14 +120,14 @@ exports.updateIndividualLeaderboard = async (user, givenPoints) => {
                     discordID: user.user.tag,
                     teamID: teamRole.id,
                     podID: podRole.id,
-                    total_points: pointsData.total_points,
-                    review_points: pointsData.review_points,
-                    blog_points: pointsData.blog_points,
-                    debug_points: pointsData.debug_points,
-                    project_points: pointsData.project_points,
-                    concept_points: pointsData.concept_points,
-                    meme_points: pointsData.meme_points,
-                    grattitude_points: pointsData.grattitude_points,
+                    total_points,
+                    review_points,
+                    blog_points,
+                    debug_points,
+                    project_points,
+                    concept_points,
+                    meme_points,
+                    grattitude_points,
                 };
                 realtimeDb.ref(`individual/${user.id}`).set(data);
             }
@@ -134,7 +136,7 @@ exports.updateIndividualLeaderboard = async (user, givenPoints) => {
             console.error(`Firebase Realtime: ${error}`);
         });
     const teamRole = user.roles.cache.find((e) => teams[e.id]);
-    await updateTeamLeaderboard(teamRole, pointsData.total_points);
+    await updateTeamLeaderboard(teamRole, total_points);
 };
 
 const listenForIndividualLeaderBoardChanges = async () => {
