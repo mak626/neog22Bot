@@ -26,6 +26,11 @@ Discord bot for #neoG22 Discord Channel
 - Usage: `!dm-unverified`
 - Description: Alerts unverified users to verify themselves by sending DM and adds unverified role to users
 
+#### doubt
+
+- Usage: `!doubt [question]`
+- Description: Ask a doubt and get it resolved by the faculty
+
 #### find-user
 
 - Usage: `!find-user <@user_name>`
