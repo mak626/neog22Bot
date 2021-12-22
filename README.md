@@ -28,7 +28,7 @@ Discord bot for #neoG22 Discord Channel
 
 #### doubt
 
-- Usage: `!doubt [question]`
+- Usage: `!doubt <question>`
 - Description: Ask a doubt and get it resolved by the faculty
 
 #### find-user

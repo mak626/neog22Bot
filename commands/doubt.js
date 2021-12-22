@@ -5,7 +5,7 @@ const { pods: podChannelData } = require('../assets/data/doubt_static.json');
 
 module.exports = {
     name: 'doubt',
-    usage: `${PREFIX}doubt [question]`,
+    usage: `${PREFIX}doubt <question>`,
     description: 'Ask a doubt and get it resolved by the faculty',
 
     /**
