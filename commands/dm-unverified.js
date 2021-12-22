@@ -34,7 +34,7 @@ module.exports = {
                     .setDescription(
                         [
                             `Use command \`${PREFIX}verify-me\` in **bot-spam** channel of server`,
-                            '\nChannel Link: https://discord.com/channels/713418735532114034/716334985891545118',
+                            '\nChannel Link: https://discord.com/channels/914867137863118919/914867138668404766',
                         ].join('\n')
                     )
                     .setFooter('Wish to see you there soon🙌');
