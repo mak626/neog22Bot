@@ -3,8 +3,8 @@ const fs = require('fs');
 const { PREFIX, COLORS } = require('../utils/constants');
 
 module.exports = {
-    name: 'help-tt',
-    usage: `${PREFIX}help-tt`,
+    name: 'help-nc',
+    usage: `${PREFIX}help-nc`,
     description: 'Gives basic information about commands',
 
     /**

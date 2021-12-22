@@ -66,14 +66,14 @@ Discord bot for #neoG22 Discord Channel
 - Usage: `!gwreview <@user-name> [mark]`
 - Description: Grades review mark to a user from server
 
-#### help-tt-v
+#### help-nc-v
 
-- Usage: `!help-tt-v`
+- Usage: `!help-nc-v`
 - Description: Gives detailed information about commands
 
-#### help-tt
+#### help-nc
 
-- Usage: `!help-tt`
+- Usage: `!help-nc`
 - Description: Gives basic information about commands
 
 #### kick
@@ -160,11 +160,6 @@ Discord bot for #neoG22 Discord Channel
 
 - Usage: `!spam-remove <link>`
 - Description: Removes a spam link from auto kicking
-
-#### temp
-
-- Usage: `!pod-delete`
-- Description: Deletes category CATEGORY_NAME with all its sub channels and roles
 
 #### thank
 
