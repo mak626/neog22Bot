@@ -40,7 +40,7 @@ module.exports = {
                 },
                 html: hbs,
                 selector: 'body > div > div',
-                content: { type: 'Grattiude', person: data },
+                content: { type: 'Gratitude', person: data },
             });
 
             await message.channel.send('', { files: [path] });
