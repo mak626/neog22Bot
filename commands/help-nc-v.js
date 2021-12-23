@@ -13,6 +13,8 @@ module.exports = {
     async execute(message) {
         const admins = message.member.permissions.has('MANAGE_ROLES');
         const moderators = message.member.permissions.has('MANAGE_MESSAGES');
+        const faculty = message.member.permissions.has('VIEW_AUDIT_LOG');
+
         const commandFiles = fs.readdirSync('./commands/').filter((file) => file.endsWith('.js'));
 
         const commandsArray = commandFiles
@@ -28,9 +30,10 @@ module.exports = {
 
                 if (command.hidden) return 'HIDDEN';
                 if (command.disable) return 'HIDDEN';
+                if (command.faculty && faculty) return description;
                 if (command.moderator && moderators) return description;
                 if (command.admin && admins) return description;
-                if (command.admin || command.moderator) return 'DELETE';
+                if (command.admin || command.moderator || command.faculty) return 'DELETE';
                 return description;
             })
             .filter((command) => command !== 'DELETE')

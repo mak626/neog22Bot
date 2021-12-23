@@ -51,7 +51,7 @@ module.exports = {
         await channel.send(embed);
         embed = new Discord.MessageEmbed()
             .setColor(COLORS.orange)
-            .setDescription('Thank you for expressing your grattitude towards others who help you');
+            .setDescription('Thank you for expressing your gratitude towards others who help you');
 
         return message.channel.send(embed);
     },

@@ -63,7 +63,7 @@ exports.getCategoryLeaderBoard = async (podId) => {
 };
 
 /**
- * Gets the indiviual grattitude leaderboard
+ * Gets the indiviual gratitude leaderboard
  * @returns {Promise<IndividualLeaderBoard[]>}
  */
 exports.getGrattidueLeaderBoard = async () => {

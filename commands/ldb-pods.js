@@ -10,6 +10,7 @@ module.exports = {
     name: 'ldb-pods',
     usage: `${PREFIX}ldb-pods`,
     description: 'Shows the leaderboard of pods',
+    faculty: true,
 
     /**
      * @param {Discord.Message} message

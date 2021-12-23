@@ -5,9 +5,9 @@ const { PREFIX, COLORS } = require('../utils/constants');
 const { getGrattidueLeaderBoard } = require('../firebase/individual_leaderboard');
 
 module.exports = {
-    name: 'ldb-grattitude',
-    usage: `${PREFIX}ldb-grattitude`,
-    description: 'Shows the leaderboard of Grattitude',
+    name: 'ldb-gratitude',
+    usage: `${PREFIX}ldb-gratitude`,
+    description: 'Shows the leaderboard of Gratitude',
 
     /**
      * @param {Discord.Message} message

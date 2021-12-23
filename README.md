@@ -91,10 +91,10 @@ Discord bot for #neoG22 Discord Channel
 - Usage: `!ldb-category [@role]`
 - Description: Shows the category individual leaderboard
 
-#### ldb-grattitude
+#### ldb-gratitude
 
-- Usage: `!ldb-grattitude`
-- Description: Shows the leaderboard of Grattitude
+- Usage: `!ldb-gratitude`
+- Description: Shows the leaderboard of Gratitude
 
 #### ldb-individual
 

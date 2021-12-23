@@ -10,6 +10,7 @@ module.exports = {
     name: 'ldb-category',
     usage: `${PREFIX}ldb-category [@role]`,
     description: 'Shows the category individual leaderboard',
+    faculty: true,
 
     /**
      * @param {Discord.Message} message

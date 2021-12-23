@@ -11,6 +11,7 @@ module.exports = {
     name: 'ldb-teams',
     usage: `${PREFIX}ldb-teams`,
     description: 'Shows the leaderboard of teams',
+    faculty: true,
 
     /**
      * @param {Discord.Message} message

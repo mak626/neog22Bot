@@ -8,6 +8,7 @@ module.exports = {
     name: 'ldb-individual',
     usage: `${PREFIX}ldb-individual`,
     description: 'Shows the individual leaderboard',
+    faculty: true,
 
     /**
      * @param {Discord.Message} message

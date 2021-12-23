@@ -8,6 +8,7 @@ module.exports = {
     name: 'gwmeme',
     usage: `${PREFIX}gwmeme <@user-name> [mark]`,
     description: 'Grades meme mark to a user from server',
+    faculty: true,
 
     /**
      * @param {Discord.Message} message

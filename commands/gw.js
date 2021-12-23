@@ -10,6 +10,7 @@ module.exports = {
     name: 'gw',
     usage: `${PREFIX}gw <@user-name> | <@team_role> | <@pod_role>  [mark]`,
     description: 'Grades mark to a user | team | pod from server',
+    faculty: true,
 
     /**
      * @param {Discord.Message} message

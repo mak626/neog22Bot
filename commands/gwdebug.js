@@ -8,6 +8,7 @@ module.exports = {
     name: 'gwdebug',
     usage: `${PREFIX}gwdebug <@user-name> [mark]`,
     description: 'Grades debugging mark to a user from server',
+    faculty: true,
 
     /**
      * @param {Discord.Message} message
