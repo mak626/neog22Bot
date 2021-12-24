@@ -5,7 +5,8 @@
   "private": true,
   "main": "app.js",
   "scripts": {
-    "start": "nodemon app.js",
+    "dev": "nodemon app.js",
+    "start": "node app.js",
     "test": "docker-compose up --build -d neog22bot-dev && npm run-script logs-dev",
     "stop-test": "docker-compose stop neog22bot-dev",
     "logs": "docker logs -f prod",
