@@ -1,6 +1,6 @@
 const Discord = require('discord.js');
 const fs = require('fs');
-const { PREFIX, COLORS } = require('../utils/constants');
+const { PREFIX } = require('../utils/constants');
 
 module.exports = {
     name: 'help-nc-v',
