@@ -40,13 +40,7 @@ module.exports = {
             .filter((command) => command !== 'HIDDEN');
 
         commandsArray.sort();
-
-        const embed = new Discord.MessageEmbed({
-            title: 'Commands',
-            color: COLORS.purple,
-            fields: commandsArray,
-        });
-
-        return message.channel.send(embed);
+        const msg = `**Commands Usage**\n\n${commandsArray.map((e) => `${e?.value}\n`).join('\n')}`;
+        return message.channel.send(msg, { split: true });
     },
 };
