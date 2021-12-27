@@ -44,7 +44,7 @@ const QUESTION_FIVE = [
     `If you'd like to change it back then type: \`${PREFIX}gh <GITHUB_USERNAME>\`, Eg: \`${PREFIX}gh tanaypratap\``,
     "\nOur community is commited to certain standards of behavior and we enforce that behavior to ensure it's a nice place to spend time.",
     'Further, we follow few terms and policies too.',
-    'Please read about our code of conduct, terms and policies here: <https://tanvi-neogcamp.notion.site/YOUR-RULEBOOK-d6a020f866c8413b8502c2f43a5928a4>',
+    'Please read about our code of conduct, terms and policies here: <https://bit.ly/neogcamp2022-rulebook>',
     '\n**🔺5. Do you agree to abide by and uphold the code of conduct, terms and policies ?**',
     'Reply: `yes`',
 ].join('\n');
@@ -53,7 +53,7 @@ const FINAL = [
     '**✅ Congrats, your onboarding for neoG Camp 2022 is complete.',
     '\n✨Welcome to neoG Camp 2022.✨**',
     'Here is your personal kit',
-    '<https://tanvi-neogcamp.notion.site/neoG-Camp-22-kit-a777c391a05947b0aa3a5d9609c47b8b>',
+    '<https://bit.ly/neoGCamp22Kit>',
     'Do read it to understand the structure of the camp.',
     'Happy learning :)',
     '\nHead over to https://discord.com/channels/914867137863118919/914867138148335657 and say **hello** to your new coding family.',
