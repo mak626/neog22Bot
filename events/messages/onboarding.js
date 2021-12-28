@@ -53,7 +53,7 @@ const FINAL = [
     '**✅ Congrats, your onboarding for neoG Camp 2022 is complete.',
     '\n✨Welcome to neoG Camp 2022.✨**',
     'Here is your personal kit',
-    '<https://bit.ly/neoGCamp22Kit>',
+    '<https://bit.ly/neogcamp2022-welcomeKit>',
     'Do read it to understand the structure of the camp.',
     'Happy learning :)',
     '\nHead over to https://discord.com/channels/914867137863118919/914867138148335657 and say **hello** to your new coding family.',
