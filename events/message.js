@@ -75,13 +75,9 @@ module.exports = {
                     [
                         `Dear ${member},`,
                         'We have noticed you are not following our guidelines properly',
-                        'As mentioned earlier we will not tolerate any kind of misbehaviour,',
-                        'You are being `KICKED` from **Team Tanay Community**',
+                        'You have spammed the server. Please do not repeat the same',
                     ].join('\n')
                 );
-            } catch (error) {}
-            try {
-                member.kick('Used spam link');
             } catch (error) {}
 
             const embed = new Discord.MessageEmbed()
