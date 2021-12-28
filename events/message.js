@@ -18,7 +18,6 @@ module.exports = {
             return;
         }
         if (!message.content.startsWith(PREFIX)) await this.checkSpamMessage(message, client);
-        if (!message.content.startsWith(PREFIX)) await this.checkHeySpecificMessage(message, client);
         if (!message.content.startsWith(PREFIX)) return;
 
         let embed;
@@ -97,47 +96,5 @@ module.exports = {
             const channel = client.channels.cache.get(serverConfig.moderator_channel_id);
             channel.send(embed);
         }
-    },
-
-    /**
-     * Checks if given message is specific syntax
-     * @param {Discord.Message} message
-     * @param {Discord.Client} client
-     * */
-    async checkHeySpecificMessage(message, client) {
-        const msg = message.content;
-        const serverConfig = client.configs.get(message.guild.id);
-        const checkWords = [
-            { word: 'Tanay', channel: serverConfig.hey_tanay_channel_id },
-            { word: 'neoG', channel: serverConfig.hey_neog_channel_id },
-            { word: 'Tanvi', channel: serverConfig.hey_neog_channel_id },
-        ];
-
-        checkWords.some((e) => {
-            if (
-                msg
-                    .replace(/[^a-zA-Z ]/g, '')
-                    .toLowerCase()
-                    .includes(`hey ${e.word.toLowerCase()}`)
-            ) {
-                const member = message.guild.member(message.author.id);
-
-                let embed = new Discord.MessageEmbed()
-                    .setTitle(`${member.user.tag} summoned ${e.word}`)
-                    .addField('Message', message.content)
-                    .addField('Location', message.url)
-                    .setThumbnail(member.user.displayAvatarURL())
-                    .setColor(COLORS.yellow);
-
-                const channel = client.channels.cache.get(e.channel);
-                channel.send(embed);
-
-                embed = new Discord.MessageEmbed().setDescription(`Your question has been recieved ${member.user}`).setColor(COLORS.green);
-                message.reply(embed);
-
-                return true;
-            }
-            return false;
-        });
     },
 };
