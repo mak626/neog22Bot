@@ -169,6 +169,7 @@ module.exports = {
                             [
                                 'Hi, this is an exclusive server for **neoG Camp 2022 students** and team.',
                                 'You are not authorised to be a member of this server.',
+                                'Please use the mail you have provided us',
                                 'If you think we are at mistake and you should be a member, then please take a screenshot and mail to _neogcamp@gmail.com_ the issue.',
                             ].join('\n')
                         );
