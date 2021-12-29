@@ -11,6 +11,6 @@ module.exports = {
     grattitude_channel_id: '914875152968335381',
     verification_channel_id: '915608637773332529',
     welcome_channel_id: '914867137942786104',
-    moderator_channel_id: '914867138668404767',
+    moderator_channel_id: '914867139637280769',
     leaderboard_channel_id: '917020883275628544',
 };
