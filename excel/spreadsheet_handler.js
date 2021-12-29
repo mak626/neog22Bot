@@ -138,8 +138,8 @@ async function updateDatabase(data) {
  * @param {string} email
  */
 async function checkAuth(email) {
-    const participants = (await getSheetValuesByName('Authorized!A2:A')).map((e) => e[0]);
-    return participants.includes(email);
+    const participants = (await getSheetValuesByName('Authorized!A2:A')).map((e) => e[0].toLowerCase());
+    return participants.includes(email.toLowerCase());
 }
 
 module.exports = {
