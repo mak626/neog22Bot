@@ -2,12 +2,13 @@ const Discord = require('discord.js');
 const { getSheetValuesByName } = require('../excel/spreadsheet_handler');
 const { PREFIX, COLORS } = require('../utils/constants');
 const { sendDissapearingMessage } = require('../utils/functions');
+const sheetName = 'Roles';
 
 module.exports = {
     name: 'role-excel',
     admin: true,
     usage: `${PREFIX}role-excel <@role_name>`,
-    description: 'Assigns the given role_name to given users from excel sheet neoGrad',
+    description: `Assigns the given role_name to given users from excel sheet ${sheetName}`,
 
     /**
      * @param {Discord.Message} message
@@ -20,7 +21,7 @@ module.exports = {
         const { id: roleID, name: roleName } = message.mentions.roles.first();
         const embed = new Discord.MessageEmbed().setColor(COLORS.green).setTitle(`Assigned the '@${roleName}' role to given users`);
 
-        const sheetData = (await getSheetValuesByName('neoGrad')).splice(1);
+        const sheetData = (await getSheetValuesByName(sheetName)).splice(1);
         const unknownPeople = [];
 
         for (let i = 0; i < sheetData.length; i++) {
