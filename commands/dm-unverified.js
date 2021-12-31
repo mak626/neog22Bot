@@ -33,8 +33,8 @@ module.exports = {
                     .setThumbnail(message.guild.iconURL())
                     .setDescription(
                         [
-                            `Use command \`${PREFIX}verify-me\` in **bot-spam** channel of server`,
-                            '\nChannel Link: https://discord.com/channels/914867137863118919/924977270739836978',
+                            `Use command \`${PREFIX}verify-me\` in **verification** channel of server`,
+                            '\nChannel Link: https://discord.com/channels/914867137863118919/915608637773332529',
                         ].join('\n')
                     )
                     .setFooter('Wish to see you there soon🙌');
