@@ -15,10 +15,6 @@
     "build": "docker-compose up --no-start --build neog22bot-prod",
     "run": "docker-compose up -d neog22bot-prod",
     "stop": "docker-compose stop neog22bot-prod",
-    "heroku-build": "docker build --pull --rm -f Dockerfile -t registry.heroku.com/team-tanay-bot/worker:latest .",
-    "heroku-run": "docker run --env-file .env -it --rm --name TT-BOT registry.heroku.com/team-tanay-bot/worker:latest",
-    "heroku-deploy": "heroku container:push worker -a team-tanay-bot && heroku container:release worker -a team-tanay-bot",
-    "heroku-logs": "heroku logs --tail -a team-tanay-bot --source app",
     "update-command-readme": "node ./utils/update-command-readme.js"
   },
   "author": "M Aswin Kishore",
