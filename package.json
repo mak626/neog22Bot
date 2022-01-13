@@ -1,6 +1,6 @@
 {
   "name": "neog22bot",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Discord Bot for Neog22",
   "private": true,
   "main": "app.js",

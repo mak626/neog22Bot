@@ -139,7 +139,7 @@ Discord bot for #neoG22 Discord Channel
 #### role-excel
 
 - Usage: `!role-excel <@role_name>`
-- Description: Assigns the given role_name to given users from excel sheet neoGrad
+- Description: Assigns the given role_name to given users from excel sheet Roles
 
 #### role-remove
 
