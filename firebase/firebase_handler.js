@@ -271,8 +271,8 @@ exports.updateWarnUser = async (user, offence) => {
                 });
             }
         })
-        .catch((error) => {
-            console.error(`Firebase Realtime: ${error}`);
+        .catch((e) => {
+            logger.error(`Firebase Realtime: ${e.message} | ${e?.stack}`);
         });
 };
 
@@ -302,8 +302,8 @@ exports.resetWarnUser = async (user) => {
                 });
             }
         })
-        .catch((error) => {
-            console.error(`Firebase Realtime: ${error}`);
+        .catch((e) => {
+            logger.error(`Firebase Realtime: ${e.message} | ${e?.stack}`);
         });
 };
 
@@ -341,8 +341,8 @@ exports.addSpamLink = async (link) => {
     try {
         dbRealtimeDatabase.ref('spamlinks').push().set({ link });
         return true;
-    } catch (error) {
-        console.error(`Firebase Realtime: ${error}`);
+    } catch (e) {
+        logger.error(`Firebase Realtime: ${e.message} | ${e?.stack}`);
         return false;
     }
 };
@@ -358,8 +358,8 @@ exports.removeSpamLink = async (link) => {
     try {
         await dbRealtimeDatabase.ref(`spamlinks/${value.id}`).remove();
         return true;
-    } catch (error) {
-        console.error(`Firebase Realtime: ${error}`);
+    } catch (e) {
+        logger.error(`Firebase Realtime: ${e.message} | ${e?.stack}`);
         return false;
     }
 };

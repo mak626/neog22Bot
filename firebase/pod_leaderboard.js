@@ -36,8 +36,8 @@ exports.updatePodLeaderboard = async (podRole, points) => {
                 points: data.points + points,
             });
         })
-        .catch((error) => {
-            console.error(`Firebase Realtime: ${error}`);
+        .catch((e) => {
+            logger.error(`Firebase Realtime: ${e.message} | ${e?.stack}`);
         });
 };
 

@@ -132,8 +132,8 @@ exports.updateIndividualLeaderboard = async (
                 realtimeDb.ref(`individual/${user.id}`).set(data);
             }
         })
-        .catch((error) => {
-            console.error(`Firebase Realtime: ${error}`);
+        .catch((e) => {
+            logger.error(`Firebase Realtime: ${e.message} | ${e?.stack}`);
         });
     const teamRole = user.roles.cache.find((e) => teams[e.id]);
     await updateTeamLeaderboard(teamRole, total_points);

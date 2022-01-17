@@ -38,8 +38,8 @@ exports.updateTeamLeaderboard = async (teamRole, points) => {
                 points: data.points + points,
             });
         })
-        .catch((error) => {
-            console.error(`Firebase Realtime: ${error}`);
+        .catch((e) => {
+            logger.error(`Firebase Realtime: ${e.message} | ${e?.stack}`);
         });
     const podRole = podData.pods.find((e) => e.teams.some((_e) => _e.id === teamRole.id));
     await updatePodLeaderboard(podRole, points);
