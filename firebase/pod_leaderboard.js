@@ -4,7 +4,7 @@ const { logger } = require('../utils/logger');
 const { realtimeDb } = require('./firebase_handler');
 
 /**
- * @typedef {import('../utils/models/PodLeaderBoard').PodLeaderBoard} PodLeaderBoard
+ * @typedef {import('../types/PodLeaderBoard').PodLeaderBoard} PodLeaderBoard
  */
 
 /** @type {PodLeaderBoard[]} */

@@ -11,10 +11,10 @@ const auth = new google.auth.GoogleAuth({
 // ----------- Sheet helper functions ----------
 
 /**
- * @typedef {import('../utils/models/FirebaseUser').FirebaseUser} FirebaseUser
- * @typedef {import('../utils/models/LeaderBoardUser').LeaderBoardUser} LeaderBoardUser
- * @typedef {import('../utils/models/WarnUser').WarnUser} WarnUser
- * @typedef {import('../utils/models/WarnUser').WarnOffence} WarnOffence
+ * @typedef {import('../types/FirebaseUser').FirebaseUser} FirebaseUser
+ * @typedef {import('../types/LeaderBoardUser').LeaderBoardUser} LeaderBoardUser
+ * @typedef {import('../types/WarnUser').WarnUser} WarnUser
+ * @typedef {import('../types/WarnUser').WarnOffence} WarnOffence
  */
 
 /**

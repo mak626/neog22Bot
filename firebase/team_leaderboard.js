@@ -6,7 +6,7 @@ const { updatePodLeaderboard } = require('./pod_leaderboard');
 const podData = require('../assets/data/pod_static.json');
 
 /**
- * @typedef {import('../utils/models/PodLeaderBoard').TeamLeaderBoard} TeamLeaderBoard
+ * @typedef {import('../types/PodLeaderBoard').TeamLeaderBoard} TeamLeaderBoard
  */
 
 /** @type {TeamLeaderBoard[]} */
