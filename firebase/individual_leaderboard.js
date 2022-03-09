@@ -7,9 +7,9 @@ const { teams } = require('../assets/data/teams_static.json');
 const podData = require('../assets/data/pod_static.json');
 const { updateTeamLeaderboard } = require('./team_leaderboard');
 /**
- * @typedef {import('../utils/models/PodLeaderBoard').IndividualLeaderBoard} IndividualLeaderBoard
- * @typedef {import('../utils/models/PodLeaderBoard').Points} Points
- * @typedef {import('../utils/models/PodLeaderBoard').LeaderboardCategoryType} LeaderboardCategory
+ * @typedef {import('../types/PodLeaderBoard').IndividualLeaderBoard} IndividualLeaderBoard
+ * @typedef {import('../types/PodLeaderBoard').Points} Points
+ * @typedef {import('../types/PodLeaderBoard').LeaderboardCategoryType} LeaderboardCategory
  */
 
 /** @type {IndividualLeaderBoard[]} */
@@ -132,8 +132,8 @@ exports.updateIndividualLeaderboard = async (
                 realtimeDb.ref(`individual/${user.id}`).set(data);
             }
         })
-        .catch((error) => {
-            console.error(`Firebase Realtime: ${error}`);
+        .catch((e) => {
+            logger.error(`Firebase Realtime: ${e.message} | ${e?.stack}`);
         });
     const teamRole = user.roles.cache.find((e) => teams[e.id]);
     await updateTeamLeaderboard(teamRole, total_points);

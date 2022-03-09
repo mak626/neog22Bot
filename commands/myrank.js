@@ -16,7 +16,7 @@ module.exports = {
         const person = await getUserLeaderBoard(user);
 
         const embed = new Discord.MessageEmbed()
-            .setTitle('🏆 Gratitude LeaderBoard 🏆')
+            .setTitle('🏆 neoG LeaderBoard 🏆')
             .setThumbnail(user.user.displayAvatarURL())
             .setColor(message.member.displayHexColor)
             .addField('Name', user.user.username, true)

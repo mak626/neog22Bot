@@ -28,6 +28,7 @@ module.exports = {
             await member.roles.add(memberRole);
             return;
         }
+        if (member.user.bot) return;
         const serverConfig = client.configs.get(member.guild.id);
         const unverifiedRole = member.guild.roles.cache.get(serverConfig.unverified_role_id);
         await member.roles.add(unverifiedRole);
@@ -169,6 +170,7 @@ module.exports = {
                             [
                                 'Hi, this is an exclusive server for **neoG Camp 2022 students** and team.',
                                 'You are not authorised to be a member of this server.',
+                                'Please use the mail you have provided us',
                                 'If you think we are at mistake and you should be a member, then please take a screenshot and mail to _neogcamp@gmail.com_ the issue.',
                             ].join('\n')
                         );
@@ -268,7 +270,7 @@ module.exports = {
                 channel.send(embed);
             }
         } catch (e) {
-            logger.error(`Command: ${command} Error:`, e);
+            logger.error(`Command: ${command} Error: ${e.message} | ${e?.stack}`);
             const embed = new Discord.MessageEmbed({
                 title: 'Error Occured',
                 description: 'Check your commands',

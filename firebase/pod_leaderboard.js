@@ -4,7 +4,7 @@ const { logger } = require('../utils/logger');
 const { realtimeDb } = require('./firebase_handler');
 
 /**
- * @typedef {import('../utils/models/PodLeaderBoard').PodLeaderBoard} PodLeaderBoard
+ * @typedef {import('../types/PodLeaderBoard').PodLeaderBoard} PodLeaderBoard
  */
 
 /** @type {PodLeaderBoard[]} */
@@ -36,8 +36,8 @@ exports.updatePodLeaderboard = async (podRole, points) => {
                 points: data.points + points,
             });
         })
-        .catch((error) => {
-            console.error(`Firebase Realtime: ${error}`);
+        .catch((e) => {
+            logger.error(`Firebase Realtime: ${e.message} | ${e?.stack}`);
         });
 };
 

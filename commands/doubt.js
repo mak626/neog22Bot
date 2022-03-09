@@ -19,7 +19,7 @@ module.exports = {
         const reason = args.join(' ').trim();
 
         const podChannel = podChannelData.find((e) => e.id === message.channel.parentID);
-        if (!podChannel) sendDissapearingMessage('No Channel Found');
+        if (!podChannel) sendDissapearingMessage(message, 'No Pod Channel Found');
 
         let embed = new Discord.MessageEmbed();
         embed.setColor(COLORS.orange);

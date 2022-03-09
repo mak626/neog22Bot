@@ -6,7 +6,7 @@ const { updatePodLeaderboard } = require('./pod_leaderboard');
 const podData = require('../assets/data/pod_static.json');
 
 /**
- * @typedef {import('../utils/models/PodLeaderBoard').TeamLeaderBoard} TeamLeaderBoard
+ * @typedef {import('../types/PodLeaderBoard').TeamLeaderBoard} TeamLeaderBoard
  */
 
 /** @type {TeamLeaderBoard[]} */
@@ -38,8 +38,8 @@ exports.updateTeamLeaderboard = async (teamRole, points) => {
                 points: data.points + points,
             });
         })
-        .catch((error) => {
-            console.error(`Firebase Realtime: ${error}`);
+        .catch((e) => {
+            logger.error(`Firebase Realtime: ${e.message} | ${e?.stack}`);
         });
     const podRole = podData.pods.find((e) => e.teams.some((_e) => _e.id === teamRole.id));
     await updatePodLeaderboard(podRole, points);
