@@ -115,9 +115,9 @@ exports.resetIndividualLeaderboard = async () => {
             }
         ], `Leaderboard Reset ${todaysDate}`, todaysDate, '<#date>', './assets/mail/backup.html');
 
-        // realtimeDb.ref('individual').remove();
-        // await realtimeDb.ref('pods').set(pods);
-        // await realtimeDb.ref('teams').set(teams);
+        realtimeDb.ref('individual').remove();
+        await realtimeDb.ref('pods').set(pods);
+        await realtimeDb.ref('teams').set(teams);
         return Promise.resolve();
     } catch (e) {
         logger.log(e);
