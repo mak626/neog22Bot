@@ -1,16 +1,16 @@
 const fs = require('fs');
 const juice = require('juice');
 
-const htmlParser = () => {
+const htmlParser = (path) => {
     const attachment = [
         {
             path: './assets/mail/neog.png',
             cid: 'neog',
         },
     ];
-    const htmlFilePath = './assets/mail/content.html';
-    const html = fs.readFileSync(htmlFilePath, 'utf-8', () => {});
-    let css = fs.readFileSync(htmlFilePath.replace('html', 'css'), 'utf-8', () => {});
+    const htmlFilePath = path || './assets/mail/content.html';
+    const html = fs.readFileSync(htmlFilePath, 'utf-8', () => { });
+    let css = fs.readFileSync(htmlFilePath.replace('html', 'css'), 'utf-8', () => { });
 
     // Converting css variables to inline
     const reg = /--.*:.*;/gm;

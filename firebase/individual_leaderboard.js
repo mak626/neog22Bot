@@ -6,6 +6,9 @@ const { realtimeDb } = require('./firebase_handler');
 const { teams } = require('../assets/data/teams_static.json');
 const podData = require('../assets/data/pod_static.json');
 const { updateTeamLeaderboard } = require('./team_leaderboard');
+const { createFile, sendCustomizedMail } = require('../utils/functions');
+const { sendMail } = require('../utils/mailHandler');
+const { pods } = require('../assets/data/realtimeDB_default.json');
 /**
  * @typedef {import('../types/PodLeaderBoard').IndividualLeaderBoard} IndividualLeaderBoard
  * @typedef {import('../types/PodLeaderBoard').Points} Points
@@ -71,6 +74,57 @@ exports.getGrattidueLeaderBoard = async () => {
     leaderBoard = leaderBoard.sort((a, b) => b.grattitude_points - a.grattitude_points).slice(0, 3);
     return leaderBoard;
 };
+
+
+/**
+ * Resets points of user in Leaderboard
+ * @param {Discord.GuildMember} user
+ * @param {Points}  givenPoints
+ */
+exports.resetIndividualLeaderboard = async () => {
+    const date = new Date();
+    const todaysDate = `${date.getDate()}-${date.getMonth() + 1}-${date.getFullYear()}`;
+
+    try {
+        const individualLeaderboard = await realtimeDb.ref('individual').get();
+        const podsLeaderboard = await realtimeDb.ref('pods').get();
+        const teamsLeaderboard = await realtimeDb.ref('teams').get();
+
+
+        const individualRecords = await individualLeaderboard.val();
+        const podsRecords = await podsLeaderboard.val();
+        const teamsRecords = await teamsLeaderboard.val();
+
+        createFile(`individual-leaderboard-reset-${todaysDate}`, individualRecords);
+        createFile(`pods-leaderboard-reset-${todaysDate}`, podsRecords);
+        createFile(`teams-leaderboard-reset-${todaysDate}`, teamsRecords);
+
+
+        sendMail(['ishanjirety24@gmail.com', 'aaradhya@neog.camp'], null, [
+            {
+                filename: `individual-leaderboard-reset-${todaysDate}`,
+                path: `${__dirname.replace('firebase', 'assets\\dump\\')}individual-leaderboard-reset-${todaysDate}.json`
+            },
+            {
+                filename: `pods-leaderboard-reset-${todaysDate}`,
+                path: `${__dirname.replace('firebase', 'assets\\dump\\')}pods-leaderboard-reset-${todaysDate}.json`
+            },
+            {
+                filename: `teams-leaderboard-reset-${todaysDate}`,
+                path: `${__dirname.replace('firebase', 'assets\\dump\\')}teams-leaderboard-reset-${todaysDate}.json`
+            }
+        ], `Leaderboard Reset ${todaysDate}`, todaysDate, '<#date>', './assets/mail/backup.html');
+
+        // realtimeDb.ref('individual').remove();
+        // await realtimeDb.ref('pods').set(pods);
+        // await realtimeDb.ref('teams').set(teams);
+        return Promise.resolve();
+    } catch (e) {
+        logger.log(e);
+        return Promise.reject();
+    }
+};
+
 
 /**
  * Updates points of user in Leaderboard
@@ -157,5 +211,8 @@ const listenForIndividualLeaderBoardChanges = async () => {
         // logger.firebase(`Updated ${data.name} in Individual leaderboard Array`);
     });
 };
+
+
+
 
 listenForIndividualLeaderBoardChanges();

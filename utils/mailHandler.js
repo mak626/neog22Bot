@@ -18,9 +18,9 @@ const options = {
 
 const transporter = nodemailer.createTransport(options);
 
-async function sendMail(email, verificationCode) {
+async function sendMail(email, verificationCode, attachments, subject, date, replaceString, htmlPath) {
     logger.info(`Sending mail to ${email}`);
-    const html = htmlParser().replace('<#verificationCode>', verificationCode);
+    const html = htmlParser(htmlPath).replace(replaceString || '<#verificationCode>', date || verificationCode);
 
     return new Promise(
         (resolve) =>
@@ -29,13 +29,14 @@ async function sendMail(email, verificationCode) {
                 {
                     from: `"${process.env.USER_NAME} NO-REPLY" <${process.env.GOOGLE_USER}>`,
                     to: email,
-                    subject: 'Verification For #neogCamp 2022 Discord Server',
+                    subject: subject || 'Verification For #neogCamp 2022 Discord Server',
                     html,
                     attachments: [
                         {
                             path: './assets/mail/neog.png',
                             cid: 'neog',
                         },
+                        ...attachments
                     ],
                 },
                 (e) => {
