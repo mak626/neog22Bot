@@ -100,7 +100,7 @@ exports.resetIndividualLeaderboard = async () => {
         createFile(`teams-leaderboard-reset-${todaysDate}`, teamsRecords);
 
 
-        sendMail(['ishanjirety24@gmail.com', 'aaradhya@neog.camp'], null, [
+        sendMail(['ishanjirety24@gmail.com', 'aaradhya@neog.camp', 'tanvi@neog.camp'], null, [
             {
                 filename: `individual-leaderboard-reset-${todaysDate}`,
                 path: `${__dirname.replace('firebase', 'assets\\dump\\')}individual-leaderboard-reset-${todaysDate}.json`
