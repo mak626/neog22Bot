@@ -103,15 +103,15 @@ exports.resetIndividualLeaderboard = async () => {
         sendMail(['ishanjirety24@gmail.com', 'aaradhya@neog.camp', 'tanvi@neog.camp'], null, [
             {
                 filename: `individual-leaderboard-reset-${todaysDate}`,
-                path: `${__dirname.replace('firebase', 'assets\\dump\\')}individual-leaderboard-reset-${todaysDate}.json`
+                path: `${__dirname.replace('firebase', 'assets/dump/')}individual-leaderboard-reset-${todaysDate}.json`
             },
             {
                 filename: `pods-leaderboard-reset-${todaysDate}`,
-                path: `${__dirname.replace('firebase', 'assets\\dump\\')}pods-leaderboard-reset-${todaysDate}.json`
+                path: `${__dirname.replace('firebase', 'assets/dump/')}pods-leaderboard-reset-${todaysDate}.json`
             },
             {
                 filename: `teams-leaderboard-reset-${todaysDate}`,
-                path: `${__dirname.replace('firebase', 'assets\\dump\\')}teams-leaderboard-reset-${todaysDate}.json`
+                path: `${__dirname.replace('firebase', 'assets/dump/')}teams-leaderboard-reset-${todaysDate}.json`
             }
         ], `Leaderboard Reset ${todaysDate}`, todaysDate, '<#date>', './assets/mail/backup.html');
 
