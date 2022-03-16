@@ -85,6 +85,14 @@ module.exports = {
                 src: data.meme ? message.guild.members.cache.get(data.meme.id).user.displayAvatarURL() : undefined,
                 color: data.meme ? message.guild.roles.cache.get(data.meme.podID).hexColor : 'white',
             },
+            {
+                type: 'Standup',
+                name: data.standup ? message.guild.members.cache.get(data.standup.id).user.username : undefined,
+                tagName: data.standup ? message.guild.members.cache.get(data.standup.id).user.tag : undefined,
+                points: data.standup ? data.standup.standup_points : 0,
+                src: data.standup ? message.guild.members.cache.get(data.standup.id).user.displayAvatarURL() : undefined,
+                color: data.standup ? message.guild.roles.cache.get(data.standup.podID).hexColor : 'white',
+            },
         ];
 
         await nodeHtmlToImage({

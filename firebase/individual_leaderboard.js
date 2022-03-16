@@ -60,6 +60,7 @@ exports.getCategoryLeaderBoard = async (podId) => {
         project: leaderBoard.filter((e) => e.project_points).sort((a, b) => b.project_points - a.project_points)[0],
         concept: leaderBoard.filter((e) => e.concept_points).sort((a, b) => b.concept_points - a.concept_points)[0],
         meme: leaderBoard.filter((e) => e.meme_points).sort((a, b) => b.meme_points - a.meme_points)[0],
+        standup: leaderBoard.filter((e) => e.standup_points).sort((a, b) => b.standup_points - a.standup_points)[0],
     };
 
     return data;
@@ -134,6 +135,7 @@ exports.resetIndividualLeaderboard = async () => {
 exports.updateIndividualLeaderboard = async (
     user,
     {
+        standup_points = 0,
         total_points = 0,
         review_points = 0,
         blog_points = 0,
@@ -164,6 +166,7 @@ exports.updateIndividualLeaderboard = async (
                     concept_points: data.concept_points + concept_points,
                     meme_points: data.meme_points + meme_points,
                     grattitude_points: data.grattitude_points + grattitude_points,
+                    standup_points: data.standup_points + standup_points,
                 });
             } else {
                 const teamRole = user.roles.cache.find((e) => teams[e.id]);
@@ -182,6 +185,7 @@ exports.updateIndividualLeaderboard = async (
                     concept_points,
                     meme_points,
                     grattitude_points,
+                    standup_points
                 };
                 realtimeDb.ref(`individual/${user.id}`).set(data);
             }
