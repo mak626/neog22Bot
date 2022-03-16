@@ -33,7 +33,7 @@ module.exports = {
                 .addField('Concept Points', person.concept_points, true)
                 .addField('Meme Points', person.meme_points, true)
                 .addField('Gratitude Points', person.grattitude_points, true)
-                .addField('Standup Points', person.standup_points, true);
+                .addField('Standup Points', person.standup_points || 0, true);
         } else embed.setFooter('Please start studying / helping others to get yourself a rank.');
 
         return message.channel.send(embed);

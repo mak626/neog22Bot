@@ -166,7 +166,7 @@ exports.updateIndividualLeaderboard = async (
                     concept_points: data.concept_points + concept_points,
                     meme_points: data.meme_points + meme_points,
                     grattitude_points: data.grattitude_points + grattitude_points,
-                    standup_points: data.standup_points + standup_points,
+                    standup_points: data.standup_points || 0 + standup_points,
                 });
             } else {
                 const teamRole = user.roles.cache.find((e) => teams[e.id]);
