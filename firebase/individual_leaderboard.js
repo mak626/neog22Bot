@@ -140,7 +140,6 @@ exports.resetIndividualLeaderboard = async () => {
 exports.updateIndividualLeaderboard = async (
     user,
     {
-        standup_points = 0,
         total_points = 0,
         review_points = 0,
         blog_points = 0,
@@ -149,6 +148,7 @@ exports.updateIndividualLeaderboard = async (
         concept_points = 0,
         meme_points = 0,
         grattitude_points = 0,
+        standup_points = 0,
     }
 ) => {
     realtimeDb
