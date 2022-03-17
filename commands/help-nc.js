@@ -1,4 +1,4 @@
-const Discord = require('discord.js');
+const Discord = require('discord.js'); // eslint-disable-line no-unused-vars
 const fs = require('fs');
 const { PREFIX } = require('../utils/constants');
 

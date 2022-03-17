@@ -1,7 +1,5 @@
 const Discord = require('discord.js');
 const fs = require('fs');
-const nodemailer = require('nodemailer');
-const { htmlParser } = require('./html_parser');
 const { logger } = require('./logger');
 const { COLORS } = require('./constants');
 const podData = require('../assets/data/pod_static.json');
