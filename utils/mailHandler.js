@@ -36,12 +36,12 @@ async function sendMail(email, verificationCode, attachments, subject, date, rep
                             path: './assets/mail/neog.png',
                             cid: 'neog',
                         },
-                        ...attachments
+                        ...attachments,
                     ],
                 },
-                (e) => {
-                    if (e) {
-                        logger.error(`IMPORTANT: Error Occured While Sending ERROR Mail: ${e.message} | ${e?.stack}`);
+                (error) => {
+                    if (error) {
+                        logger.error(`IMPORTANT: Error Occured While Sending ERROR Mail: ${error.message} | ${error?.stack}`);
                         resolve(false);
                     } else {
                         logger.info(`Mail has been sent to ${email}`);

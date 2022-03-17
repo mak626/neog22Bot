@@ -7,7 +7,6 @@ const { COLORS } = require('./constants');
 const podData = require('../assets/data/pod_static.json');
 require('dotenv').config();
 
-
 module.exports = {
     /**
      * @param {Discord.Message} message
@@ -105,14 +104,16 @@ module.exports = {
         return { podRole: false, teamRole: false };
     },
 
+    /**
+     * Dumps the given fileName to as a json
+     * @param {string} fileName
+     * @param {object} records
+     */
     createFile(fileName, records) {
-        fs.writeFile(`${__dirname.replace('utils', '')}/assets/dump/${fileName}.json`,
-            JSON.stringify(records),
-            (err) => {
-                if (err) {
-                    console.log(err);
-                }
-            });
+        fs.writeFile(`${__dirname.replace('utils', '')}/assets/dump/${fileName}.json`, JSON.stringify(records, null, 4), (err) => {
+            if (err) {
+                logger.log(err);
+            }
+        });
     },
-
 };
