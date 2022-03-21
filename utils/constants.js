@@ -7,6 +7,7 @@ module.exports = {
     CREDENTIALS: JSON.parse(process.env.CREDENTIALS),
     WEB_CREDENTIALS: JSON.parse(process.env.WEB_CREDENTIALS),
     TESTER_ID: process.env.TESTER_ID,
+    ADMINS_EMAIL: JSON.parse(process.env.ADMINS_EMAIL),
 
     EMAIL_REGEX:
         // eslint-disable-next-line no-useless-escape

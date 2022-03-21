@@ -6,9 +6,10 @@ const { realtimeDb } = require('./firebase_handler');
 const { teams } = require('../assets/data/teams_static.json');
 const podData = require('../assets/data/pod_static.json');
 const { updateTeamLeaderboard } = require('./team_leaderboard');
-const { createFile, sendCustomizedMail } = require('../utils/functions');
+const { createFile } = require('../utils/functions');
 const { sendMail } = require('../utils/mailHandler');
 const { pods } = require('../assets/data/realtimeDB_default.json');
+const { ADMINS_EMAIL } = require('../utils/constants');
 /**
  * @typedef {import('../types/PodLeaderBoard').IndividualLeaderBoard} IndividualLeaderBoard
  * @typedef {import('../types/PodLeaderBoard').Points} Points
@@ -76,7 +77,6 @@ exports.getGrattidueLeaderBoard = async () => {
     return leaderBoard;
 };
 
-
 /**
  * Resets points of user in Leaderboard
  * @param {Discord.GuildMember} user
@@ -91,7 +91,6 @@ exports.resetIndividualLeaderboard = async () => {
         const podsLeaderboard = await realtimeDb.ref('pods').get();
         const teamsLeaderboard = await realtimeDb.ref('teams').get();
 
-
         const individualRecords = await individualLeaderboard.val();
         const podsRecords = await podsLeaderboard.val();
         const teamsRecords = await teamsLeaderboard.val();
@@ -100,21 +99,28 @@ exports.resetIndividualLeaderboard = async () => {
         createFile(`pods-leaderboard-reset-${todaysDate}`, podsRecords);
         createFile(`teams-leaderboard-reset-${todaysDate}`, teamsRecords);
 
-        const ADMINS = process.env.ADMIN_EMAIL.replace(/\[|\]/g, '').split(',');
-        sendMail(ADMINS, null, [
-            {
-                filename: `individual-leaderboard-reset-${todaysDate}`,
-                path: `${__dirname.replace('firebase', 'assets/dump/')}individual-leaderboard-reset-${todaysDate}.json`
-            },
-            {
-                filename: `pods-leaderboard-reset-${todaysDate}`,
-                path: `${__dirname.replace('firebase', 'assets/dump/')}pods-leaderboard-reset-${todaysDate}.json`
-            },
-            {
-                filename: `teams-leaderboard-reset-${todaysDate}`,
-                path: `${__dirname.replace('firebase', 'assets/dump/')}teams-leaderboard-reset-${todaysDate}.json`
-            }
-        ], `Leaderboard Reset ${todaysDate}`, todaysDate, '<#date>', './assets/mail/backup.html');
+        sendMail(
+            ADMINS_EMAIL,
+            null,
+            [
+                {
+                    filename: `individual-leaderboard-reset-${todaysDate}`,
+                    path: `${__dirname.replace('firebase', 'assets/dump/')}individual-leaderboard-reset-${todaysDate}.json`,
+                },
+                {
+                    filename: `pods-leaderboard-reset-${todaysDate}`,
+                    path: `${__dirname.replace('firebase', 'assets/dump/')}pods-leaderboard-reset-${todaysDate}.json`,
+                },
+                {
+                    filename: `teams-leaderboard-reset-${todaysDate}`,
+                    path: `${__dirname.replace('firebase', 'assets/dump/')}teams-leaderboard-reset-${todaysDate}.json`,
+                },
+            ],
+            `Leaderboard Reset ${todaysDate}`,
+            todaysDate,
+            '<#date>',
+            './assets/mail/backup.html'
+        );
 
         realtimeDb.ref('individual').remove();
         await realtimeDb.ref('pods').set(pods);
@@ -126,7 +132,6 @@ exports.resetIndividualLeaderboard = async () => {
     }
 };
 
-
 /**
  * Updates points of user in Leaderboard
  * @param {Discord.GuildMember} user
@@ -135,7 +140,6 @@ exports.resetIndividualLeaderboard = async () => {
 exports.updateIndividualLeaderboard = async (
     user,
     {
-        standup_points = 0,
         total_points = 0,
         review_points = 0,
         blog_points = 0,
@@ -144,6 +148,7 @@ exports.updateIndividualLeaderboard = async (
         concept_points = 0,
         meme_points = 0,
         grattitude_points = 0,
+        standup_points = 0,
     }
 ) => {
     realtimeDb
@@ -185,7 +190,7 @@ exports.updateIndividualLeaderboard = async (
                     concept_points,
                     meme_points,
                     grattitude_points,
-                    standup_points
+                    standup_points,
                 };
                 realtimeDb.ref(`individual/${user.id}`).set(data);
             }
@@ -215,8 +220,5 @@ const listenForIndividualLeaderBoardChanges = async () => {
         // logger.firebase(`Updated ${data.name} in Individual leaderboard Array`);
     });
 };
-
-
-
 
 listenForIndividualLeaderBoardChanges();

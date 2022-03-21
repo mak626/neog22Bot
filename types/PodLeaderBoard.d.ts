@@ -24,7 +24,8 @@ export interface IndividualLeaderBoard {
     concept_points: number;
     meme_points: number;
     grattitude_points: number;
-    rank: ?number;
+    standup_points: number;
+    rank?: number;
 }
 
 export interface Points {
@@ -36,6 +37,7 @@ export interface Points {
     concept_points: number;
     meme_points: number;
     grattitude_points: number;
+    standup_points: number;
 }
 
 export interface LeaderboardCategoryType {

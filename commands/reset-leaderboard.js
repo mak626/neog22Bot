@@ -1,10 +1,7 @@
 // eslint-disable-next-line no-unused-vars
 const Discord = require('discord.js');
-const fs = require('fs');
 const { resetIndividualLeaderboard } = require('../firebase/individual_leaderboard');
 const { PREFIX, COLORS } = require('../utils/constants');
-const { checkRole, sendDissapearingMessage } = require('../utils/functions');
-
 
 module.exports = {
     name: 'reset-leaderboard',
@@ -24,5 +21,5 @@ module.exports = {
             embed.setColor(COLORS.red);
         }
         message.channel.send(embed);
-    }
+    },
 };
