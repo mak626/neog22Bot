@@ -122,14 +122,14 @@ exports.updateBanOrKickMember = async (user, banned, kicked, status) => {
     if (data.newUser) {
         try {
             await colRef.doc(user.id).create(data);
-        } catch (error) {}
+        } catch (error) { }
 
         if (banned && banned.reason !== '') logger.firebase(`Added ${user.user.tag} to banned: ${banned.reason}`);
         if (kicked && kicked.reason !== '') logger.firebase(`Added ${user.user.tag} to kicked: ${kicked.reason}`);
     } else {
         try {
             await colRef.doc(user.id).update(data);
-        } catch (error) {}
+        } catch (error) { }
 
         if (banned && banned.reason !== '') logger.firebase(`Updated ${user.user.tag} to banned: ${banned.reason}`);
         if (kicked && kicked.reason !== '') logger.firebase(`Updated ${user.user.tag} to kicked: ${kicked.reason}`);
@@ -153,7 +153,7 @@ exports.updateUser = async (user) => {
     if (data.newUser) {
         try {
             await colRef.doc(user.id).create(data);
-        } catch (error) {}
+        } catch (error) { }
         logger.firebase(`Added ${user.user.tag}`);
     } else {
         const roleArray = user.roles.cache.map((e) => ({ roleName: e.name, roleID: e.id }));
@@ -164,7 +164,7 @@ exports.updateUser = async (user) => {
         };
         try {
             await colRef.doc(user.id).update(data);
-        } catch (error) {}
+        } catch (error) { }
         logger.firebase(`Updated ${user.user.tag}`);
     }
 };
@@ -182,7 +182,7 @@ exports.getMember = async (user) => {
         data = { ...data, newUser: true };
         try {
             await colRef.doc(user.id).create(data);
-        } catch (error) {}
+        } catch (error) { }
     } else {
         data.newUser = false;
     }
@@ -223,7 +223,7 @@ exports.addNewMember = async ({ user, name, email, verificationCode, github, ver
     }
     try {
         await colRef.doc(user.id).update(data);
-    } catch (error) {}
+    } catch (error) { }
 };
 
 // USER FUNCTIONS : END ----------------------

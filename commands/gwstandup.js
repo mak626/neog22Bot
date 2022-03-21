@@ -46,7 +46,7 @@ module.exports = {
         embed.setColor(COLORS.orange);
 
         const authorUser = message.guild.member(message.author);
-
+        console.log(taggedUser.id);
         embed
             .setTitle('Congratulations :partying_face: :tada:')
             .setDescription(`${authorUser} awarded ${taggedUser} \`${points}\` standup points`)
