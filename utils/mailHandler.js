@@ -22,6 +22,18 @@ async function sendMail(email, verificationCode, attachments, subject, date, rep
     logger.info(`Sending mail to ${email}`);
     const html = htmlParser(htmlPath).replace(replaceString || '<#verificationCode>', date || verificationCode);
 
+    const mailAttachments = attachments ? [
+        {
+            path: './assets/mail/neog.png',
+            cid: 'neog',
+        },
+        ...attachments
+    ] : [
+        {
+            path: './assets/mail/neog.png',
+            cid: 'neog',
+        },
+    ];
     return new Promise(
         (resolve) =>
             // eslint-disable-next-line implicit-arrow-linebreak
@@ -31,13 +43,7 @@ async function sendMail(email, verificationCode, attachments, subject, date, rep
                     to: email,
                     subject: subject || 'Verification For #neogCamp 2022 Discord Server',
                     html,
-                    attachments: [
-                        {
-                            path: './assets/mail/neog.png',
-                            cid: 'neog',
-                        },
-                        ...attachments,
-                    ],
+                    attachments: mailAttachments,
                 },
                 (error) => {
                     if (error) {
