@@ -1,7 +1,7 @@
 /* eslint-disable camelcase */
 // eslint-disable-next-line no-unused-vars
-const fs = require('fs');
 const Discord = require('discord.js');
+const fs = require('fs');
 const { logger } = require('../utils/logger');
 const { realtimeDb } = require('./firebase_handler');
 const { teams } = require('../assets/data/teams_static.json');
@@ -78,7 +78,6 @@ exports.getGrattidueLeaderBoard = async () => {
     return leaderBoard;
 };
 
-
 exports.getLatestDBdump = async () => {
     const date = new Date();
     const todaysDate = `${date.getDate()}-${date.getMonth() + 1}-${date.getFullYear()}`;
@@ -93,7 +92,6 @@ exports.getLatestDBdump = async () => {
     createFile(`individual-leaderboard-latest-dump-${todaysDate}`, individualRecords);
     createFile(`pods-leaderboard-latest-dump-${todaysDate}`, podsRecords);
     createFile(`teams-leaderboard-latest-dump-${todaysDate}`, teamsRecords);
-
 
     await sendMail(
         ADMINS_EMAIL,
@@ -123,7 +121,6 @@ exports.getLatestDBdump = async () => {
     fs.unlinkSync(`${__dirname.replace('firebase', 'assets/dump/')}teams-leaderboard-latest-dump-${todaysDate}.json`);
 };
 
-
 /**
  * Resets points of user in Leaderboard
  * @param {Discord.GuildMember} user
@@ -145,7 +142,6 @@ exports.resetIndividualLeaderboard = async () => {
         createFile(`individual-leaderboard-reset-${todaysDate}`, individualRecords);
         createFile(`pods-leaderboard-reset-${todaysDate}`, podsRecords);
         createFile(`teams-leaderboard-reset-${todaysDate}`, teamsRecords);
-
 
         sendMail(
             ADMINS_EMAIL,
