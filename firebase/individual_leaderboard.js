@@ -1,5 +1,6 @@
 /* eslint-disable camelcase */
 // eslint-disable-next-line no-unused-vars
+const fs = require('fs');
 const Discord = require('discord.js');
 const { logger } = require('../utils/logger');
 const { realtimeDb } = require('./firebase_handler');
@@ -77,6 +78,52 @@ exports.getGrattidueLeaderBoard = async () => {
     return leaderBoard;
 };
 
+
+exports.getLatestDBdump = async () => {
+    const date = new Date();
+    const todaysDate = `${date.getDate()}-${date.getMonth() + 1}-${date.getFullYear()}`;
+    const individualLeaderboard = await realtimeDb.ref('individual').get();
+    const podsLeaderboard = await realtimeDb.ref('pods').get();
+    const teamsLeaderboard = await realtimeDb.ref('teams').get();
+
+    const individualRecords = await individualLeaderboard.val();
+    const podsRecords = await podsLeaderboard.val();
+    const teamsRecords = await teamsLeaderboard.val();
+
+    createFile(`individual-leaderboard-latest-dump-${todaysDate}`, individualRecords);
+    createFile(`pods-leaderboard-latest-dump-${todaysDate}`, podsRecords);
+    createFile(`teams-leaderboard-latest-dump-${todaysDate}`, teamsRecords);
+
+
+    await sendMail(
+        ADMINS_EMAIL,
+        null,
+        [
+            {
+                filename: `individual-leaderboard-latest-dump-${todaysDate}.json`,
+                path: `${__dirname.replace('firebase', 'assets/dump/')}individual-leaderboard-latest-dump-${todaysDate}.json`,
+            },
+            {
+                filename: `pods-leaderboard-latest-dump-${todaysDate}.json`,
+                path: `${__dirname.replace('firebase', 'assets/dump/')}pods-leaderboard-latest-dump-${todaysDate}.json`,
+            },
+            {
+                filename: `teams-leaderboard-latest-dump-${todaysDate}.json`,
+                path: `${__dirname.replace('firebase', 'assets/dump/')}teams-leaderboard-latest-dump-${todaysDate}.json`,
+            },
+        ],
+        `Leaderboard Latest Database Dump ${todaysDate}`,
+        todaysDate,
+        '<#date>',
+        './assets/mail/backup.html'
+    );
+
+    fs.unlinkSync(`${__dirname.replace('firebase', 'assets/dump/')}individual-leaderboard-latest-dump-${todaysDate}.json`);
+    fs.unlinkSync(`${__dirname.replace('firebase', 'assets/dump/')}pods-leaderboard-latest-dump-${todaysDate}.json`);
+    fs.unlinkSync(`${__dirname.replace('firebase', 'assets/dump/')}teams-leaderboard-latest-dump-${todaysDate}.json`);
+};
+
+
 /**
  * Resets points of user in Leaderboard
  * @param {Discord.GuildMember} user
@@ -99,20 +146,21 @@ exports.resetIndividualLeaderboard = async () => {
         createFile(`pods-leaderboard-reset-${todaysDate}`, podsRecords);
         createFile(`teams-leaderboard-reset-${todaysDate}`, teamsRecords);
 
+
         sendMail(
             ADMINS_EMAIL,
             null,
             [
                 {
-                    filename: `individual-leaderboard-reset-${todaysDate}`,
+                    filename: `individual-leaderboard-reset-${todaysDate}.json`,
                     path: `${__dirname.replace('firebase', 'assets/dump/')}individual-leaderboard-reset-${todaysDate}.json`,
                 },
                 {
-                    filename: `pods-leaderboard-reset-${todaysDate}`,
+                    filename: `pods-leaderboard-reset-${todaysDate}.json`,
                     path: `${__dirname.replace('firebase', 'assets/dump/')}pods-leaderboard-reset-${todaysDate}.json`,
                 },
                 {
-                    filename: `teams-leaderboard-reset-${todaysDate}`,
+                    filename: `teams-leaderboard-reset-${todaysDate}.json`,
                     path: `${__dirname.replace('firebase', 'assets/dump/')}teams-leaderboard-reset-${todaysDate}.json`,
                 },
             ],
