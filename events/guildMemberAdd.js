@@ -93,7 +93,7 @@ module.exports = {
         let guildID;
         if (PREFIX === '!') guildID = require('../configs/tt-server').id;
         else guildID = require('../configs/test').id;
-
+        console.log(client.guilds.cache.get(guildID));
         const user = client.guilds.cache.get(guildID).members.cache.get(message.author.id);
         let command;
         let args;

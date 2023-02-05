@@ -47,7 +47,6 @@ module.exports = {
             grattitude_points: 1,
         });
         const channel = findChannelById(message, client.configs.get(message.guild.id).grattitude_channel_id);
-
         await channel.send(embed);
         embed = new Discord.MessageEmbed()
             .setColor(COLORS.orange)

@@ -19,12 +19,10 @@ module.exports = {
         }
         if (!message.content.startsWith(PREFIX)) await this.checkSpamMessage(message, client);
         if (!message.content.startsWith(PREFIX)) return;
-
         let embed;
 
         const args = message.content.slice(PREFIX.length).trim().split(' ');
         const command = args.shift().toLowerCase();
-
         let commandFileData;
         if (command === 'thanks' || command === 'thankyou' || command === 'ty') commandFileData = client.commands.get('thank');
         else commandFileData = client.commands.get(command);

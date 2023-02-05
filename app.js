@@ -3,8 +3,13 @@ const fs = require('fs');
 const Discord = require('discord.js');
 const { logger } = require('./utils/logger');
 const { token } = JSON.parse(process.env.CONFIG);
-
-const client = new Discord.Client();
+const client = new Discord.Client({
+    intents: [
+        Discord.Intents.FLAGS.GUILDS,
+        Discord.Intents.FLAGS.GUILD_MESSAGES,
+        Discord.Intents.FLAGS.MESSAGE_CONTENT,
+    ],
+});
 client.login(token);
 
 client.commands = new Discord.Collection();
